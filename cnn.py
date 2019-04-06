@@ -9,6 +9,7 @@ import numpy as np
 import datetime
 from torch.autograd import Variable
 import torch.nn.functional as F
+from sys import argv
 
 
 # torch.manual_seed(1)    # reproducible
@@ -19,6 +20,13 @@ BATCH_SIZE = 32
 LR = 0.01              # learning rate
 DATA_DIR = './data/'
 DOWNLOAD_CIFAR10 = not(os.path.exists(DATA_DIR)) or not os.listdir(DATA_DIR)
+
+if len(argv) > 1:
+    EPOCH = int(argv[1])
+if len(argv) > 2:
+    BATCH_SIZE = int(argv[2])
+if len(argv) > 3:
+    LR = float(argv[3])
 
 
 transform = transforms.Compose(
@@ -87,6 +95,13 @@ loss_func = nn.CrossEntropyLoss()                       # the target label is no
 
 
 # training and testing
+print('TRAINING')
+print('='*30)
+print('''\
+Epoches: {EPOCH}
+Batch size: {BATCH_SIZE}
+Learning rate: {LR}
+'''.format(**locals()))
 running_loss_size = max(1, len(train_loader) // 10)
 for epoch in range(EPOCH):
     running_loss = 0.0
