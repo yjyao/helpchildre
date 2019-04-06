@@ -127,8 +127,15 @@ print('Finished Training')
 #                 plot_with_labels(low_dim_embs, labels)
 # plt.ioff()
 
-# # print 10 predictions from test data
-# test_output, _ = cnn(test_x[:10])
-# pred_y = torch.max(test_output, 1)[1].data.numpy()
-# print(pred_y, 'prediction number')
-# print(test_y[:10].numpy(), 'real number')
+# Test the cnn
+cnn.eval()  # eval mode (batchnorm uses moving mean/variance instead of mini-batch mean/variance)
+with torch.no_grad():
+    correct = 0
+    total = 0
+    for images, labels in test_loader:
+        images, labels = Variable(images), Variable(labels)
+        outputs = cnn(images)
+        _, predicts = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicts == labels).sum().item()
+    print('Test accuracy of the cnn on the {} test images: {:5.2f}%'.format(total, 100 * correct / total))
