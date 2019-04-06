@@ -184,8 +184,7 @@ for epoch in range(EPOCH):
 
         # print statistics
         running_loss += loss.item()
-        # if i % running_loss_size == running_loss_size - 1:
-        if True:
+        if i % running_loss_size == running_loss_size - 1:
             print('[%d, %5d][%s] loss: %.3f' %
                   (epoch + 1, i + 1,
                    datetime.datetime.now().strftime('%H:%M:%S'),
