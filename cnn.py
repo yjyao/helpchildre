@@ -16,6 +16,7 @@ EPOCH = 200               # train the training data n times, to save time, we ju
 BATCH_SIZE = 128
 LR = 0.01              # learning rate
 DOWNLOAD_CIFAR10 = False
+DATA_DIR = './data/'
 
 
 transform = transforms.Compose(
@@ -23,12 +24,12 @@ transform = transforms.Compose(
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 # cifar10 image data set
-if not(os.path.exists('./cifar10/')) or not os.listdir('./cifar10/'):
+if not(os.path.exists(DATA_DIR)) or not os.listdir(DATA_DIR):
     # not mnist dir or mnist is empyt dir
     DOWNLOAD_CIFAR10 = True
 
 train_data = torchvision.datasets.CIFAR10(
-    root='./data/',
+    root=DATA_DIR,
     train=True,                                     # this is training data
     transform=transform,    # Converts a PIL.Image or numpy.ndarray to
                                                     # torch.FloatTensor of shape (C x H x W) and normalize in the range [0.0, 1.0]
@@ -40,7 +41,7 @@ train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffl
 
 
 test_data = torchvision.datasets.CIFAR10(
-    root='./data/', 
+    root=DATA_DIR, 
     train=False,
     transform=transform,
     download=DOWNLOAD_CIFAR10
