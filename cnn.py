@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import os
 import torchvision.transforms as transforms
 import numpy as np
+import datetime
 from torch.autograd import Variable
 
 
@@ -183,9 +184,12 @@ for epoch in range(EPOCH):
 
         # print statistics
         running_loss += loss.item()
-        if i % running_loss_size == running_loss_size - 1:
-            print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / running_loss_size))
+        # if i % running_loss_size == running_loss_size - 1:
+        if True:
+            print('[%d, %5d][%s] loss: %.3f' %
+                  (epoch + 1, i + 1,
+                   datetime.datetime.now().strftime('%H:%M:%S'),
+                   running_loss / running_loss_size))
             running_loss = 0.0
 print('Finished Training')
 
