@@ -72,16 +72,28 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
-        self.conv1 = torch.nn.Conv2d(3, 18, kernel_size=3, stride=1, padding=1)
-        self.pool = torch.nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
-        self.fc1 = torch.nn.Linear(18 * 16 * 16, 64)
+
+        self.conv1 = nn.Sequential(
+            nn.Conv2d(
+                in_channels=3,
+                out_channels=18,
+                kernel_size=3,
+                stride=1,
+                padding=1,
+            ),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+        )
+        self.fc1 = nn.Sequential(
+          nn.Linear(18 * (((32 + 2*1 - 3)//1+1)//2)**2, 64),
+          nn.ReLU(),
+        )
         self.fc2 = torch.nn.Linear(64, 10)
 
     def forward(self, x):
-        x = F.relu(self.conv1(x))
-        x = self.pool(x)
-        x = x.view(-1, 18 * 16 *16)
-        x = F.relu(self.fc1(x))
+        x = self.conv1(x)
+        x = x.view(x.size(0), -1)
+        x = self.fc1(x)
         x = self.fc2(x)
         return x
 
@@ -123,7 +135,7 @@ for epoch in range(EPOCH):
         # wrap them in Variable
         inputs, labels = Variable(inputs), Variable(labels)
         # clear gradients for this training step
-        optimizer.zero_grad()   
+        optimizer.zero_grad()
         # forward + backward + optimize
         outputs = cnn(inputs)               # cnn output
         loss = loss_func(outputs, labels)   # cross entropy loss
