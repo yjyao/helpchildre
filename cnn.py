@@ -15,18 +15,13 @@ from torch.autograd import Variable
 EPOCH = 200               # train the training data n times, to save time, we just train 1 epoch
 BATCH_SIZE = 128
 LR = 0.01              # learning rate
-DOWNLOAD_CIFAR10 = False
 DATA_DIR = './data/'
+DOWNLOAD_CIFAR10 = not(os.path.exists(DATA_DIR)) or not os.listdir(DATA_DIR)
 
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-
-# cifar10 image data set
-if not(os.path.exists(DATA_DIR)) or not os.listdir(DATA_DIR):
-    # not mnist dir or mnist is empyt dir
-    DOWNLOAD_CIFAR10 = True
 
 train_data = torchvision.datasets.CIFAR10(
     root=DATA_DIR,
