@@ -32,7 +32,8 @@ train_data = torchvision.datasets.CIFAR10(
 )
 
 # Data Loader for easy mini-batch return in training, the image batch shape will be (50, 1, 28, 28)
-train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True, num_workers=2)
+num_batches = len(train_data) // BATCH_SIZE
+train_loader = Data.DataLoader(dataset=train_data, batch_size=num_batches, shuffle=True, num_workers=2)
 
 
 test_data = torchvision.datasets.CIFAR10(
@@ -166,6 +167,7 @@ loss_func = nn.CrossEntropyLoss()                       # the target label is no
 # training and testing
 for epoch in range(EPOCH):
     running_loss = 0.0
+    running_loss_size = min(BATCH_SIZE // 5, 500)
     for i, data in enumerate(train_loader):   # gives batch data, normalize x when iterate train_loader
         # get the inputs
         inputs, labels = data
@@ -180,10 +182,10 @@ for epoch in range(EPOCH):
         optimizer.step()                # apply gradients
 
         # print statistics
-        running_loss += loss.data[0]
-        if i % 500 == 499:    # print every 2000 mini-batches
+        running_loss += loss.item()
+        if i % running_loss_size == running_loss_size - 1:
             print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / 500))
+                  (epoch + 1, i + 1, running_loss / running_loss_size))
             running_loss = 0.0
 print('Finished Training')
 
