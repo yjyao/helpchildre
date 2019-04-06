@@ -87,9 +87,9 @@ loss_func = nn.CrossEntropyLoss()                       # the target label is no
 
 
 # training and testing
+running_loss_size = max(1, len(train_loader) // 10)
 for epoch in range(EPOCH):
     running_loss = 0.0
-    running_loss_size = len(train_loader) // 10
     for i, data in enumerate(train_loader):   # gives batch data, normalize x when iterate train_loader
         # get the inputs
         inputs, labels = data
