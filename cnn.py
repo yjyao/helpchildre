@@ -36,10 +36,9 @@ train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffl
 
 
 test_data = torchvision.datasets.CIFAR10(
-    root=DATA_DIR, 
+    root=DATA_DIR,
     train=False,
     transform=transform,
-    download=DOWNLOAD_CIFAR10
 )
 
 test_loader = Data.DataLoader(dataset=test_data, batch_size=(BATCH_SIZE//2), shuffle=False, num_workers=2)
