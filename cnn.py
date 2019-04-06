@@ -8,6 +8,7 @@ import torchvision.transforms as transforms
 import numpy as np
 import datetime
 from torch.autograd import Variable
+import torch.nn.functional as F
 
 
 # torch.manual_seed(1)    # reproducible
@@ -51,97 +52,18 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
-        self.conv1 = nn.Sequential(
-            nn.Conv2d(
-                in_channels = 3, # in_channel (in_img height)
-                out_channels = 48, # out_channel (output height/No.filters)
-                kernel_size = 3, # kernel_size
-                stride = 1, # filter step
-                padding = 2, 
-            ), 
-            nn.ReLU(),
-        )
-        self.conv2 = nn.Sequential(
-            nn.Conv2d(
-                in_channels = 48, # in_channel (in_img height)
-                out_channels = 48, # out_channel (output height/No.filters)
-                kernel_size = 3, # kernel_size
-                stride = 1, # filter step
-                padding = 2, 
-            ), 
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Dropout(0.25)
-        )
-        self.conv3 = nn.Sequential(
-            nn.Conv2d(
-                in_channels = 48, # in_channel (in_img height)
-                out_channels = 96, # out_channel (output height/No.filters)
-                kernel_size = 3, # kernel_size
-                stride = 1, # filter step
-                padding = 2, 
-            ), 
-            nn.ReLU(),
-        )
-        self.conv4 = nn.Sequential(
-            nn.Conv2d(
-                in_channels = 96, # in_channel (in_img height)
-                out_channels = 96, # out_channel (output height/No.filters)
-                kernel_size = 3, # kernel_size
-                stride = 1, # filter step
-                padding = 2, 
-            ), 
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Dropout(0.25)
-        )
-        self.conv5 = nn.Sequential(
-            nn.Conv2d(
-                in_channels = 96, # in_channel (in_img height)
-                out_channels = 192, # out_channel (output height/No.filters)
-                kernel_size = 3, # kernel_size
-                stride = 1, # filter step
-                padding = 2, 
-            ), 
-            nn.ReLU(),
-        )
-        self.conv6 = nn.Sequential(
-            nn.Conv2d(
-                in_channels = 192, # in_channel (in_img height)
-                out_channels = 192, # out_channel (output height/No.filters)
-                kernel_size = 3, # kernel_size
-                stride = 1, # filter step
-                padding = 2, 
-            ), 
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Dropout(0.25)
-        )
-        self.fc = nn.Sequential(
-            nn.Linear(192 * 7 * 7, 512),
-            nn.Dropout(0.5),
-            nn.Linear(512, 256),
-            nn.Dropout(0.5),
-            nn.Linear(256, 10)
-            )
+        self.conv1 = torch.nn.Conv2d(3, 18, kernel_size=3, stride=1, padding=1)
+        self.pool = torch.nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
+        self.fc1 = torch.nn.Linear(18 * 16 * 16, 64)
+        self.fc2 = torch.nn.Linear(64, 10)
 
     def forward(self, x):
-        out = self.conv1(x)
-        # print(out.size(1))
-        out = self.conv2(out)
-        # print(out.size(1))
-        out = self.conv3(out)
-        # print(out.size(1))
-        out = self.conv4(out)
-        # print(out.size(1))
-        out = self.conv5(out)
-        # print(out.size(1))
-        out = self.conv6(out)
-        # print(out.size(1))
-        out = out.view(out.size(0), -1)
-        out = self.fc(out)
-        return out
-
+        x = F.relu(self.conv1(x))
+        x = self.pool(x)
+        x = x.view(-1, 18 * 16 *16)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
 
 
 cnn = CNN()
