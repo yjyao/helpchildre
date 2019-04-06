@@ -1,3 +1,4 @@
+import random
 import torch
 import torch.nn as nn
 import torch.utils.data as Data
@@ -19,15 +20,13 @@ def progress_bar(progress, size=10, arrow='>'):
         size=size-1,  # Then final tick is covered by the end of bar.
         trim=min(pos,size-1))
 
-
-# torch.manual_seed(1)    # reproducible
-
 # Hyper Parameters
 EPOCH = 1               # train the training data n times, to save time, we just train 1 epoch
 BATCH_SIZE = 32
 LR = 0.01              # learning rate
 DATA_DIR = './data/'
 DOWNLOAD_CIFAR10 = not(os.path.exists(DATA_DIR)) or not os.listdir(DATA_DIR)
+seed = random.randint(1, 10**6)
 
 if len(argv) > 1:
     EPOCH = int(argv[1])
@@ -35,7 +34,12 @@ if len(argv) > 2:
     BATCH_SIZE = int(argv[2])
 if len(argv) > 3:
     LR = float(argv[3])
+if len(argv) > 4:
+    seed = int(argv[4])
 
+print('Using seed {}'.format(seed))
+np.random.seed(seed)
+torch.manual_seed(seed)
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -162,3 +166,4 @@ print('Finished Training')
 #                 plot_with_labels(low_dim_embs, labels)
 # plt.ioff()
 
+print('Results generated with seed {}'.format(seed))
