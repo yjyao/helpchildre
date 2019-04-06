@@ -117,7 +117,7 @@ class CNN(nn.Module):
             nn.Dropout(0.25)
         )
         self.fc = nn.Sequential(
-            nn.Linear(192 * 4 * 4, 512),
+            nn.Linear(192 * 7 * 7, 512),
             nn.Dropout(0.5),
             nn.Linear(512, 256),
             nn.Dropout(0.5),
