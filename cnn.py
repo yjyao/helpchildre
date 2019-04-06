@@ -12,6 +12,14 @@ import torch.nn.functional as F
 from sys import argv
 
 
+def progress_bar(progress, size=10, arrow='>'):
+    pos = int(min(progress, 1.0) * size)
+    return '[{bar:<{size}.{trim}}]'.format(
+        bar='{:=>{pos}}'.format(arrow, pos=pos),
+        size=size-1,  # Then final tick is covered by the end of bar.
+        trim=min(pos,size-1))
+
+
 # torch.manual_seed(1)    # reproducible
 
 # Hyper Parameters
@@ -121,10 +129,11 @@ for epoch in range(EPOCH):
         # print statistics
         running_loss += loss.item()
         if i % running_loss_size == running_loss_size - 1:
-            print('[%d, %5d][%s] loss: %.3f' %
-                  (epoch + 1, i + 1,
-                   datetime.datetime.now().strftime('%H:%M:%S'),
-                   running_loss / running_loss_size))
+            print('[{}] Epoch {} {} loss: {:.3f}'.format(
+                datetime.datetime.now().strftime('%H:%M:%S'),
+                epoch + 1,
+                progress_bar((i+1) / len(train_loader)),
+                running_loss / running_loss_size))
             running_loss = 0.0
 print('Finished Training')
 
