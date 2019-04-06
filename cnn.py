@@ -43,7 +43,7 @@ test_data = torchvision.datasets.CIFAR10(
     transform=transform,
 )
 
-test_loader = Data.DataLoader(dataset=test_data, batch_size=(BATCH_SIZE//2), shuffle=False, num_workers=2)
+test_loader = Data.DataLoader(dataset=test_data, batch_size=num_batches//2, shuffle=False, num_workers=2)
 
 
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
