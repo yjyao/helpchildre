@@ -14,8 +14,8 @@ import torch.nn.functional as F
 # torch.manual_seed(1)    # reproducible
 
 # Hyper Parameters
-EPOCH = 200               # train the training data n times, to save time, we just train 1 epoch
-BATCH_SIZE = 128
+EPOCH = 1               # train the training data n times, to save time, we just train 1 epoch
+BATCH_SIZE = 32
 LR = 0.01              # learning rate
 DATA_DIR = './data/'
 DOWNLOAD_CIFAR10 = not(os.path.exists(DATA_DIR)) or not os.listdir(DATA_DIR)
