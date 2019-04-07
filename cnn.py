@@ -81,7 +81,8 @@ class CNN(nn.Module):
                      in_channels, out_channels, kernel_size,
                      stride=1, padding=None, dilation=1, groups=1, bias=True,
                      activation=None,
-                     max_pool_size=1):
+                     max_pool_size=1,
+                     dropout=0):
             padding = (kernel_size - 1) // 2 if padding is None else padding
             super(CNN.ConvLayer, self).__init__(*[m for m in (
                 nn.Conv2d(in_channels, out_channels, kernel_size, stride,
@@ -89,6 +90,7 @@ class CNN(nn.Module):
                 activation,
                 nn.MaxPool2d(kernel_size=max_pool_size, stride=max_pool_size)
                 if max_pool_size > 1 else None,
+                nn.Dropout(dropout) if dropout else None,
             ) if m])
             self.out_channels = out_channels
             self.out_size = ((in_size +
