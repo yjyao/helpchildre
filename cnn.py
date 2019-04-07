@@ -101,7 +101,13 @@ class CNN(nn.Module):
           nn.Linear(48 * (((16 + 2*1 - 3)//1+1)//2)**2, 512),
           nn.ReLU(),
         )
-        self.fc2 = torch.nn.Linear(512, 10)
+
+        self.fc2 = nn.Sequential(
+          nn.Linear(512, 128),
+          nn.ReLU(),
+        )
+
+        self.fc3 = torch.nn.Linear(128, 10)
 
     def forward(self, x):
         x = self.conv1(x)
@@ -109,6 +115,7 @@ class CNN(nn.Module):
         x = x.view(x.size(0), -1)
         x = self.fc1(x)
         x = self.fc2(x)
+        x = self.fc3(x)
         return x
 
 
