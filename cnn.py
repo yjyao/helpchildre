@@ -196,7 +196,7 @@ loss_func = nn.CrossEntropyLoss()                       # the target label is no
 
 # plt.ion()
 
-def validate(loader, name):
+def validate(loader, name, old_loss=None, old_acc=None):
     cnn.eval()  # eval mode (different batchnorm, dropout, etc.)
     with torch.no_grad():
         correct = 0
@@ -207,10 +207,16 @@ def validate(loader, name):
             _, predicts = torch.max(outputs.data, 1)
             correct += (predicts == labels).sum().item()
             loss += loss_func(outputs, labels).item()
-    print('[{name} images]\t avg loss: {avg_loss:5.3f}, accuracy: {acc:6.2f}%'.format(
-        name=name,
-        avg_loss=loss / len(loader),
-        acc=100 * correct / len(loader.dataset)))
+    sign = lambda x: x and (-1, 1)[x>0]
+    compsymb = lambda v: {-1: 'v', 0: '=', 1: '^'}[sign(v)]
+    avg_loss, acc = loss / len(loader), correct / len(loader.dataset)
+    print(('[{name} images]'
+           '\t avg loss: {avg_loss:5.3f}{loss_comp}'
+           ', accuracy: {acc:6.2f}%{acc_comp}').format(
+               name=name, avg_loss=avg_loss, acc=100 * acc,
+               loss_comp='' if old_loss is None else compsymb(avg_loss-old_loss),
+               acc_comp='' if old_acc is None else compsymb(acc-old_acc)))
+    return avg_loss, acc
 
 # training and testing
 print('TRAINING')
@@ -221,6 +227,8 @@ Batch size: {BATCH_SIZE}
 Learning rate: {LR}
 '''.format(**locals()))
 running_loss_size = max(1, len(train_loader) // 10)
+train_loss, train_accuracy = None, None
+test_loss, test_accuracy = None, None
 for epoch in range(EPOCH):
     running_loss = 0.0
     cnn.train()  # train mode
@@ -246,8 +254,8 @@ for epoch in range(EPOCH):
                 progress_bar((i+1) / len(train_loader)),
                 running_loss / running_loss_size))
             running_loss = 0.0
-    validate(train_loader, 'train')
-    validate(test_loader, 'test')
+    train_loss, train_accuracy = validate(train_loader, 'train', train_loss, train_accuracy)
+    test_loss, test_accuracy = validate(test_loader, 'test', test_loss, test_accuracy)
 print('Finished Training')
 
 #         if step % 50 == 0:
