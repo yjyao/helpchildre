@@ -103,8 +103,10 @@ class CNN(nn.Module):
 
         def __init__(self, in_features, out_features, bias=True,
                      activation=None,
-                     dropout=0):
+                     dropout=0,
+                     batchnorm=False):
             super(CNN.FcLayer, self).__init__(*[m for m in (
+                nn.BatchNorm1d(in_features) if batchnorm else None,
                 nn.Linear(in_features, out_features, bias),
                 activation,
                 nn.Dropout(dropout) if dropout else None,
