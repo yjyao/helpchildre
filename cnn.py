@@ -102,10 +102,12 @@ class CNN(nn.Module):
     class FcLayer(nn.Sequential):
 
         def __init__(self, in_features, out_features, bias=True,
-                     activation=None):
+                     activation=None,
+                     dropout=0):
             super(CNN.FcLayer, self).__init__(*[m for m in (
                 nn.Linear(in_features, out_features, bias),
                 activation,
+                nn.Dropout(dropout) if dropout else None,
             ) if m])
             self.out_features = out_features
 
