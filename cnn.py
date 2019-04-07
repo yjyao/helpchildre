@@ -73,49 +73,48 @@ class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
 
-        self.conv1 = nn.Sequential(
-            nn.Conv2d(
-                in_channels=3,
-                out_channels=18,
-                kernel_size=3,
-                stride=1,
-                padding=1,
+        self.encoder = nn.Sequential(
+            nn.Sequential(
+                nn.Conv2d(
+                    in_channels=3,
+                    out_channels=18,
+                    kernel_size=3,
+                    stride=1,
+                    padding=1,
+                ),
+                nn.ReLU(),
+                nn.MaxPool2d(kernel_size=2, stride=2),
             ),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2, stride=2),
-        )
-
-        self.conv2 = nn.Sequential(
-            nn.Conv2d(
-                in_channels=18,
-                out_channels=48,
-                kernel_size=3,
-                stride=1,
-                padding=1,
+            nn.Sequential(
+                nn.Conv2d(
+                    in_channels=18,
+                    out_channels=48,
+                    kernel_size=3,
+                    stride=1,
+                    padding=1,
+                ),
+                nn.ReLU(),
+                nn.MaxPool2d(kernel_size=2, stride=2),
             ),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2, stride=2),
         )
 
-        self.fc1 = nn.Sequential(
-          nn.Linear(48 * (((16 + 2*1 - 3)//1+1)//2)**2, 512),
-          nn.ReLU(),
+        self.decoder = nn.Sequential(
+            nn.Sequential(
+                nn.Linear(48 * (((16 + 2*1 - 3)//1+1)//2)**2, 512),
+                nn.ReLU(),
+            ),
+            nn.Sequential(
+                nn.Linear(512, 128),
+                nn.ReLU(),
+            ),
+            torch.nn.Linear(128, 10),
         )
 
-        self.fc2 = nn.Sequential(
-          nn.Linear(512, 128),
-          nn.ReLU(),
-        )
-
-        self.fc3 = torch.nn.Linear(128, 10)
 
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.conv2(x)
+        x = self.encoder(x)
         x = x.view(x.size(0), -1)
-        x = self.fc1(x)
-        x = self.fc2(x)
-        x = self.fc3(x)
+        x = self.decoder(x)
         return x
 
 
