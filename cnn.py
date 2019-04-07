@@ -119,7 +119,7 @@ class CNN(nn.Module):
 
         self.add_conv_layer(
             out_channels=18,
-            kernel_size=3,
+            kernel_size=5,
             activation=nn.ReLU(),
             max_pool_size=2,
         )
