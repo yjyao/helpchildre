@@ -72,11 +72,15 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 class CNN(nn.Module):
 
     class ConvLayer(nn.Sequential):
+        '''Conv2D layer with activation function and optionally MaxPool.
+
+        NOTE Padding is by default set to (kernel_size - 1) // 2 instead of 0.
+        '''
 
         def __init__(self, in_size,
                      in_channels, out_channels, kernel_size,
                      stride=1, padding=None, dilation=1, groups=1, bias=True,
-                     activation=None, 
+                     activation=None,
                      max_pool_size=1):
             padding = (kernel_size - 1) // 2 if padding is None else padding
             super(CNN.ConvLayer, self).__init__(*[m for m in (
