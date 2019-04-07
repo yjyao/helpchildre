@@ -124,20 +124,23 @@ class CNN(nn.Module):
         self.fc_layers = []
 
         self.add_conv_layer(
-            out_channels=18,
+            out_channels=96,
             kernel_size=5,
             activation=nn.ReLU(),
             max_pool_size=2,
+            dropout=0.2,
         )
         self.add_conv_layer(
-            out_channels=48,
+            out_channels=192,
             kernel_size=3,
             activation=nn.ReLU(),
             max_pool_size=2,
+            dropout=0.5,
         )
 
         self.add_fc_layer(
-            out_features=512,
+            batchnorm=True,
+            out_features=256,
             activation=nn.ReLU(),
         )
         self.add_fc_layer(
