@@ -186,17 +186,20 @@ loss_func = nn.CrossEntropyLoss()                       # the target label is no
 # plt.ion()
 
 def validate(loader, name):
+    cnn.eval()  # eval mode (different batchnorm, dropout, etc.)
     with torch.no_grad():
         correct = 0
-        total = 0
+        loss = 0
         for images, labels in loader:
             images, labels = Variable(images), Variable(labels)
             outputs = cnn(images)
             _, predicts = torch.max(outputs.data, 1)
-            total += labels.size(0)
             correct += (predicts == labels).sum().item()
-        print('Test accuracy of the cnn on the {} {} images: {:5.2f}%'.format(
-            total, name, 100 * correct / total))
+            loss += loss_func(outputs, labels).item()
+    print('[{name} images]\t avg loss: {avg_loss:5.3f}, accuracy: {acc:6.2f}%'.format(
+        name=name,
+        avg_loss=loss / len(loader),
+        acc=100 * correct / len(loader.dataset)))
 
 # training and testing
 print('TRAINING')
@@ -209,7 +212,7 @@ Learning rate: {LR}
 running_loss_size = max(1, len(train_loader) // 10)
 for epoch in range(EPOCH):
     running_loss = 0.0
-    cnn.train()
+    cnn.train()  # train mode
     for i, data in enumerate(train_loader):   # gives batch data, normalize x when iterate train_loader
         # get the inputs
         inputs, labels = data
@@ -232,7 +235,6 @@ for epoch in range(EPOCH):
                 progress_bar((i+1) / len(train_loader)),
                 running_loss / running_loss_size))
             running_loss = 0.0
-    cnn.eval()  # eval mode (batchnorm uses moving mean/variance instead of mini-batch mean/variance)
     validate(train_loader, 'train')
     validate(test_loader, 'test')
 print('Finished Training')
