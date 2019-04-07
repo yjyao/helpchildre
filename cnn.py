@@ -71,16 +71,15 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 #=====================================#=====================================#
 class CNN(nn.Module):
 
-    class ConvLayer(nn.Module):
+    class ConvLayer(nn.Sequential):
 
         def __init__(self, in_size,
                      in_channels, out_channels, kernel_size,
                      stride=1, padding=None, dilation=1, groups=1, bias=True,
                      activation=None, 
                      max_pool_size=1):
-            super(CNN.ConvLayer, self).__init__()
             padding = (kernel_size - 1) // 2 if padding is None else padding
-            self.block = nn.Sequential(*[m for m in (
+            super(CNN.ConvLayer, self).__init__(*[m for m in (
                 nn.Conv2d(in_channels, out_channels, kernel_size, stride,
                           padding, dilation, groups, bias),
                 activation,
@@ -92,69 +91,53 @@ class CNN(nn.Module):
                               2 * padding -
                               dilation * (kernel_size - 1) - 1) //
                              stride + 1) // (max_pool_size or 1)
+            self.out_features = self.out_channels * self.out_size**2
 
-        def forward(self, x):
-            return self.block(x)
-
-
-    class FcLayer(nn.Module):
+    class FcLayer(nn.Sequential):
 
         def __init__(self, in_features, out_features, bias=True,
                      activation=None):
-            super(CNN.FcLayer, self).__init__()
-            self.block = nn.Sequential(*[m for m in (
+            super(CNN.FcLayer, self).__init__(*[m for m in (
                 nn.Linear(in_features, out_features, bias),
                 activation,
             ) if m])
             self.out_features = out_features
 
-        def forward(self, x):
-            return self.block(x)
-
     def __init__(self):
         super(CNN, self).__init__()
 
-        IMAGE_SIZE = 32
-        IMAGE_CHANNELS = 3
-        NUM_CLASSES = 10
+        self.IMAGE_SIZE = 32
+        self.IMAGE_CHANNELS = 3
+        self.NUM_CLASSES = 10
 
-        conv_layers = []
-        conv_layers.append(CNN.ConvLayer(
-            in_size=IMAGE_SIZE,
-            in_channels=IMAGE_CHANNELS,
+        self.conv_layers = []
+        self.fc_layers = []
+
+        self.add_conv_layer(
             out_channels=18,
             kernel_size=3,
             activation=nn.ReLU(),
             max_pool_size=2,
-        ))
-        conv_layers.append(CNN.ConvLayer(
-            in_size=conv_layers[-1].out_size,
-            in_channels=conv_layers[-1].out_channels,
+        )
+        self.add_conv_layer(
             out_channels=48,
             kernel_size=3,
             activation=nn.ReLU(),
             max_pool_size=2,
-        ))
+        )
 
-        fc_layers = []
-        fc_layers.append(CNN.FcLayer(
-            in_features=(conv_layers[-1].out_channels *
-                         conv_layers[-1].out_size**2),
+        self.add_fc_layer(
             out_features=512,
             activation=nn.ReLU(),
-        ))
-        fc_layers.append(CNN.FcLayer(
-            in_features=fc_layers[-1].out_features,
+        )
+        self.add_fc_layer(
             out_features=128,
             activation=nn.ReLU(),
-        ))
-        fc_layers.append(CNN.FcLayer(
-            in_features=fc_layers[-1].out_features,
-            out_features=NUM_CLASSES,
-        ))
+        )
+        self.add_fc_layer(out_features=self.NUM_CLASSES)
 
-        self.encoder = nn.Sequential(*conv_layers)
-        self.decoder = nn.Sequential(*fc_layers)
+        self.encoder = nn.Sequential(*self.conv_layers)
+        self.decoder = nn.Sequential(*self.fc_layers)
 
     def forward(self, x):
         x = self.encoder(x)
@@ -162,6 +145,22 @@ class CNN(nn.Module):
         x = self.decoder(x)
         return x
 
+    def add_conv_layer(self, **kw_args):
+        if not self.conv_layers:
+            in_size = self.IMAGE_SIZE
+            in_channels = self.IMAGE_CHANNELS
+        else:
+            in_size = self.conv_layers[-1].out_size
+            in_channels = self.conv_layers[-1].out_channels
+        self.conv_layers.append(CNN.ConvLayer(
+            in_size=in_size, in_channels=in_channels, **kw_args))
+
+    def add_fc_layer(self, **kw_args):
+        if not self.fc_layers:
+            in_features = self.conv_layers[-1].out_features
+        else:
+            in_features = self.fc_layers[-1].out_features
+        self.fc_layers.append(CNN.FcLayer(in_features=in_features, **kw_args))
 
 cnn = CNN()
 print(cnn)  # net architecture
