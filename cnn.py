@@ -70,46 +70,91 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 
 #=====================================#=====================================#
 class CNN(nn.Module):
+
+    class ConvLayer(nn.Module):
+
+        def __init__(self, in_size,
+                     in_channels, out_channels, kernel_size,
+                     stride=1, padding=None, dilation=1, groups=1, bias=True,
+                     activation=None, 
+                     max_pool_size=1):
+            super(CNN.ConvLayer, self).__init__()
+            padding = (kernel_size - 1) // 2 if padding is None else padding
+            self.block = nn.Sequential(*[m for m in (
+                nn.Conv2d(in_channels, out_channels, kernel_size, stride,
+                          padding, dilation, groups, bias),
+                activation,
+                nn.MaxPool2d(kernel_size=max_pool_size, stride=max_pool_size)
+                if max_pool_size > 1 else None,
+            ) if m])
+            self.out_channels = out_channels
+            self.out_size = ((in_size +
+                              2 * padding -
+                              dilation * (kernel_size - 1) - 1) //
+                             stride + 1) // (max_pool_size or 1)
+
+        def forward(self, x):
+            return self.block(x)
+
+
+    class FcLayer(nn.Module):
+
+        def __init__(self, in_features, out_features, bias=True,
+                     activation=None):
+            super(CNN.FcLayer, self).__init__()
+            self.block = nn.Sequential(*[m for m in (
+                nn.Linear(in_features, out_features, bias),
+                activation,
+            ) if m])
+            self.out_features = out_features
+
+        def forward(self, x):
+            return self.block(x)
+
     def __init__(self):
         super(CNN, self).__init__()
 
-        self.encoder = nn.Sequential(
-            nn.Sequential(
-                nn.Conv2d(
-                    in_channels=3,
-                    out_channels=18,
-                    kernel_size=3,
-                    stride=1,
-                    padding=1,
-                ),
-                nn.ReLU(),
-                nn.MaxPool2d(kernel_size=2, stride=2),
-            ),
-            nn.Sequential(
-                nn.Conv2d(
-                    in_channels=18,
-                    out_channels=48,
-                    kernel_size=3,
-                    stride=1,
-                    padding=1,
-                ),
-                nn.ReLU(),
-                nn.MaxPool2d(kernel_size=2, stride=2),
-            ),
-        )
+        IMAGE_SIZE = 32
+        IMAGE_CHANNELS = 3
+        NUM_CLASSES = 10
 
-        self.decoder = nn.Sequential(
-            nn.Sequential(
-                nn.Linear(48 * (((16 + 2*1 - 3)//1+1)//2)**2, 512),
-                nn.ReLU(),
-            ),
-            nn.Sequential(
-                nn.Linear(512, 128),
-                nn.ReLU(),
-            ),
-            torch.nn.Linear(128, 10),
-        )
+        conv_layers = []
+        conv_layers.append(CNN.ConvLayer(
+            in_size=IMAGE_SIZE,
+            in_channels=IMAGE_CHANNELS,
+            out_channels=18,
+            kernel_size=3,
+            activation=nn.ReLU(),
+            max_pool_size=2,
+        ))
+        conv_layers.append(CNN.ConvLayer(
+            in_size=conv_layers[-1].out_size,
+            in_channels=conv_layers[-1].out_channels,
+            out_channels=48,
+            kernel_size=3,
+            activation=nn.ReLU(),
+            max_pool_size=2,
+        ))
 
+        fc_layers = []
+        fc_layers.append(CNN.FcLayer(
+            in_features=(conv_layers[-1].out_channels *
+                         conv_layers[-1].out_size**2),
+            out_features=512,
+            activation=nn.ReLU(),
+        ))
+        fc_layers.append(CNN.FcLayer(
+            in_features=fc_layers[-1].out_features,
+            out_features=128,
+            activation=nn.ReLU(),
+        ))
+        fc_layers.append(CNN.FcLayer(
+            in_features=fc_layers[-1].out_features,
+            out_features=NUM_CLASSES,
+        ))
+
+        self.encoder = nn.Sequential(*conv_layers)
+        self.decoder = nn.Sequential(*fc_layers)
 
     def forward(self, x):
         x = self.encoder(x)
