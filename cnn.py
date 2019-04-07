@@ -185,6 +185,19 @@ loss_func = nn.CrossEntropyLoss()                       # the target label is no
 
 # plt.ion()
 
+def validate(loader, name):
+    with torch.no_grad():
+        correct = 0
+        total = 0
+        for images, labels in loader:
+            images, labels = Variable(images), Variable(labels)
+            outputs = cnn(images)
+            _, predicts = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicts == labels).sum().item()
+        print('Test accuracy of the cnn on the {} {} images: {:5.2f}%'.format(
+            total, name, 100 * correct / total))
+
 # training and testing
 print('TRAINING')
 print('='*30)
@@ -220,16 +233,8 @@ for epoch in range(EPOCH):
                 running_loss / running_loss_size))
             running_loss = 0.0
     cnn.eval()  # eval mode (batchnorm uses moving mean/variance instead of mini-batch mean/variance)
-    with torch.no_grad():
-        correct = 0
-        total = 0
-        for images, labels in test_loader:
-            images, labels = Variable(images), Variable(labels)
-            outputs = cnn(images)
-            _, predicts = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicts == labels).sum().item()
-        print('Test accuracy of the cnn on the {} test images: {:5.2f}%'.format(total, 100 * correct / total))
+    validate(train_loader, 'train')
+    validate(test_loader, 'test')
 print('Finished Training')
 
 #         if step % 50 == 0:
