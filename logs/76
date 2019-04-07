@@ -1,0 +1,99 @@
+Using seed 874450
+CNN(
+  (encoder): Sequential(
+    (0): ConvLayer(
+      (0): Conv2d(3, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): ReLU()
+    )
+    (1): ConvLayer(
+      (0): Conv2d(96, 96, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (1): ReLU()
+      (2): Dropout(p=0.2)
+    )
+    (2): ConvLayer(
+      (0): Conv2d(96, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): ReLU()
+    )
+    (3): ConvLayer(
+      (0): Conv2d(192, 192, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (1): ReLU()
+      (2): Dropout(p=0.5)
+    )
+  )
+  (decoder): Sequential(
+    (0): BatchNorm1d(12288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): FcLayer(
+      (0): Linear(in_features=12288, out_features=256, bias=True)
+      (1): ReLU()
+    )
+    (2): FcLayer(
+      (0): Linear(in_features=256, out_features=10, bias=True)
+    )
+  )
+)
+TRAINING
+==============================
+Epoches: 10
+Batch size: 128
+Learning rate: 0.001
+
+[01:38:24] Epoch 1 [         ] loss: 1.863
+[01:38:54] Epoch 1 [>        ] loss: 1.679
+[01:39:25] Epoch 1 [=>       ] loss: 1.513
+[01:39:55] Epoch 1 [==>      ] loss: 1.414
+[01:40:26] Epoch 1 [===>     ] loss: 1.358
+[01:40:57] Epoch 1 [====>    ] loss: 1.336
+[01:41:28] Epoch 1 [=====>   ] loss: 1.286
+[01:41:59] Epoch 1 [======>  ] loss: 1.250
+[01:42:31] Epoch 1 [=======> ] loss: 1.208
+[01:43:03] Epoch 1 [========>] loss: 1.168
+Test accuracy of the cnn on the 50000 train images: 61.23%
+Test accuracy of the cnn on the 10000 test images: 59.30%
+[01:44:48] Epoch 2 [         ] loss: 1.099
+[01:45:19] Epoch 2 [>        ] loss: 1.091
+[01:45:49] Epoch 2 [=>       ] loss: 1.061
+[01:46:18] Epoch 2 [==>      ] loss: 1.058
+[01:46:49] Epoch 2 [===>     ] loss: 1.066
+[01:47:21] Epoch 2 [====>    ] loss: 1.043
+[01:47:51] Epoch 2 [=====>   ] loss: 0.981
+[01:48:21] Epoch 2 [======>  ] loss: 0.972
+[01:48:53] Epoch 2 [=======> ] loss: 0.984
+[01:49:24] Epoch 2 [========>] loss: 0.967
+Test accuracy of the cnn on the 50000 train images: 67.50%
+Test accuracy of the cnn on the 10000 test images: 64.10%
+[01:51:18] Epoch 3 [         ] loss: 0.851
+[01:51:43] Epoch 3 [>        ] loss: 0.863
+[01:52:07] Epoch 3 [=>       ] loss: 0.862
+[01:52:31] Epoch 3 [==>      ] loss: 0.851
+[01:52:55] Epoch 3 [===>     ] loss: 0.852
+[01:53:21] Epoch 3 [====>    ] loss: 0.852
+[01:53:46] Epoch 3 [=====>   ] loss: 0.837
+[01:54:11] Epoch 3 [======>  ] loss: 0.897
+[01:54:35] Epoch 3 [=======> ] loss: 0.829
+[01:54:59] Epoch 3 [========>] loss: 0.800
+Test accuracy of the cnn on the 50000 train images: 78.26%
+Test accuracy of the cnn on the 10000 test images: 72.48%
+[01:57:05] Epoch 4 [         ] loss: 0.726
+[01:57:30] Epoch 4 [>        ] loss: 0.717
+[01:57:55] Epoch 4 [=>       ] loss: 0.751
+[01:58:21] Epoch 4 [==>      ] loss: 0.716
+[01:58:47] Epoch 4 [===>     ] loss: 0.702
+[01:59:12] Epoch 4 [====>    ] loss: 0.723
+[01:59:37] Epoch 4 [=====>   ] loss: 0.732
+[02:00:01] Epoch 4 [======>  ] loss: 0.721
+[02:00:28] Epoch 4 [=======> ] loss: 0.708
+[02:00:54] Epoch 4 [========>] loss: 0.705
+Test accuracy of the cnn on the 50000 train images: 81.50%
+Test accuracy of the cnn on the 10000 test images: 73.70%
+[02:02:36] Epoch 5 [         ] loss: 0.592
+[02:03:01] Epoch 5 [>        ] loss: 0.581
+[02:03:25] Epoch 5 [=>       ] loss: 0.593
+[02:03:50] Epoch 5 [==>      ] loss: 0.606
+[02:04:15] Epoch 5 [===>     ] loss: 0.637
+[02:04:39] Epoch 5 [====>    ] loss: 0.635
+[02:05:04] Epoch 5 [=====>   ] loss: 0.612
+[02:05:29] Epoch 5 [======>  ] loss: 0.618
+[02:05:54] Epoch 5 [=======> ] loss: 0.623
+[02:06:18] Epoch 5 [========>] loss: 0.614
+Test accuracy of the cnn on the 50000 train images: 86.28%
+Test accuracy of the cnn on the 10000 test images: 76.60%

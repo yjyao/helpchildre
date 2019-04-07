@@ -1,0 +1,140 @@
+Using seed 874450
+CNN(
+  (conv1): Sequential(
+    (0): Conv2d(3, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (conv2): Sequential(
+    (0): Conv2d(18, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (fc1): Sequential(
+    (0): Linear(in_features=3072, out_features=512, bias=True)
+    (1): ReLU()
+  )
+  (fc2): Sequential(
+    (0): Linear(in_features=512, out_features=128, bias=True)
+    (1): ReLU()
+  )
+  (fc3): Linear(in_features=128, out_features=10, bias=True)
+)
+TRAINING
+==============================
+Epoches: 10
+Batch size: 32
+Learning rate: 0.002
+
+[21:16:23] Epoch 1 [         ] loss: 1.888
+[21:16:28] Epoch 1 [>        ] loss: 1.554
+[21:16:34] Epoch 1 [=>       ] loss: 1.442
+[21:16:40] Epoch 1 [==>      ] loss: 1.366
+[21:16:48] Epoch 1 [===>     ] loss: 1.334
+[21:16:56] Epoch 1 [====>    ] loss: 1.284
+[21:17:03] Epoch 1 [=====>   ] loss: 1.267
+[21:17:11] Epoch 1 [======>  ] loss: 1.229
+[21:17:18] Epoch 1 [=======> ] loss: 1.179
+[21:17:26] Epoch 1 [========>] loss: 1.160
+Test accuracy of the cnn on the 10000 test images: 60.96%
+[21:17:37] Epoch 2 [         ] loss: 1.077
+[21:17:45] Epoch 2 [>        ] loss: 1.032
+[21:17:52] Epoch 2 [=>       ] loss: 1.029
+[21:18:00] Epoch 2 [==>      ] loss: 0.996
+[21:18:07] Epoch 2 [===>     ] loss: 0.961
+[21:18:14] Epoch 2 [====>    ] loss: 0.975
+[21:18:22] Epoch 2 [=====>   ] loss: 0.955
+[21:18:30] Epoch 2 [======>  ] loss: 0.961
+[21:18:37] Epoch 2 [=======> ] loss: 0.936
+[21:18:45] Epoch 2 [========>] loss: 0.948
+Test accuracy of the cnn on the 10000 test images: 65.86%
+[21:18:57] Epoch 3 [         ] loss: 0.769
+[21:19:04] Epoch 3 [>        ] loss: 0.782
+[21:19:12] Epoch 3 [=>       ] loss: 0.805
+[21:19:19] Epoch 3 [==>      ] loss: 0.819
+[21:19:26] Epoch 3 [===>     ] loss: 0.803
+[21:19:34] Epoch 3 [====>    ] loss: 0.771
+[21:19:41] Epoch 3 [=====>   ] loss: 0.814
+[21:19:49] Epoch 3 [======>  ] loss: 0.821
+[21:19:56] Epoch 3 [=======> ] loss: 0.783
+[21:20:04] Epoch 3 [========>] loss: 0.800
+Test accuracy of the cnn on the 10000 test images: 67.63%
+[21:20:16] Epoch 4 [         ] loss: 0.598
+[21:20:23] Epoch 4 [>        ] loss: 0.592
+[21:20:30] Epoch 4 [=>       ] loss: 0.629
+[21:20:38] Epoch 4 [==>      ] loss: 0.642
+[21:20:45] Epoch 4 [===>     ] loss: 0.643
+[21:20:53] Epoch 4 [====>    ] loss: 0.665
+[21:21:00] Epoch 4 [=====>   ] loss: 0.656
+[21:21:07] Epoch 4 [======>  ] loss: 0.667
+[21:21:15] Epoch 4 [=======> ] loss: 0.649
+[21:21:22] Epoch 4 [========>] loss: 0.690
+Test accuracy of the cnn on the 10000 test images: 69.11%
+[21:21:34] Epoch 5 [         ] loss: 0.451
+[21:21:41] Epoch 5 [>        ] loss: 0.469
+[21:21:49] Epoch 5 [=>       ] loss: 0.484
+[21:21:56] Epoch 5 [==>      ] loss: 0.487
+[21:22:04] Epoch 5 [===>     ] loss: 0.478
+[21:22:11] Epoch 5 [====>    ] loss: 0.531
+[21:22:18] Epoch 5 [=====>   ] loss: 0.515
+[21:22:26] Epoch 5 [======>  ] loss: 0.541
+[21:22:33] Epoch 5 [=======> ] loss: 0.530
+[21:22:40] Epoch 5 [========>] loss: 0.530
+Test accuracy of the cnn on the 10000 test images: 68.06%
+[21:22:52] Epoch 6 [         ] loss: 0.332
+[21:23:00] Epoch 6 [>        ] loss: 0.356
+[21:23:07] Epoch 6 [=>       ] loss: 0.355
+[21:23:15] Epoch 6 [==>      ] loss: 0.382
+[21:23:22] Epoch 6 [===>     ] loss: 0.404
+[21:23:30] Epoch 6 [====>    ] loss: 0.414
+[21:23:37] Epoch 6 [=====>   ] loss: 0.406
+[21:23:44] Epoch 6 [======>  ] loss: 0.443
+[21:23:52] Epoch 6 [=======> ] loss: 0.439
+[21:23:59] Epoch 6 [========>] loss: 0.441
+Test accuracy of the cnn on the 10000 test images: 68.08%
+[21:24:11] Epoch 7 [         ] loss: 0.238
+[21:24:18] Epoch 7 [>        ] loss: 0.271
+[21:24:26] Epoch 7 [=>       ] loss: 0.287
+[21:24:33] Epoch 7 [==>      ] loss: 0.294
+[21:24:41] Epoch 7 [===>     ] loss: 0.296
+[21:24:48] Epoch 7 [====>    ] loss: 0.335
+[21:24:56] Epoch 7 [=====>   ] loss: 0.327
+[21:25:03] Epoch 7 [======>  ] loss: 0.327
+[21:25:11] Epoch 7 [=======> ] loss: 0.343
+[21:25:18] Epoch 7 [========>] loss: 0.349
+Test accuracy of the cnn on the 10000 test images: 68.44%
+[21:25:30] Epoch 8 [         ] loss: 0.192
+[21:25:37] Epoch 8 [>        ] loss: 0.188
+[21:25:45] Epoch 8 [=>       ] loss: 0.206
+[21:25:52] Epoch 8 [==>      ] loss: 0.256
+[21:25:59] Epoch 8 [===>     ] loss: 0.255
+[21:26:07] Epoch 8 [====>    ] loss: 0.282
+[21:26:14] Epoch 8 [=====>   ] loss: 0.267
+[21:26:21] Epoch 8 [======>  ] loss: 0.252
+[21:26:29] Epoch 8 [=======> ] loss: 0.290
+[21:26:36] Epoch 8 [========>] loss: 0.306
+Test accuracy of the cnn on the 10000 test images: 67.32%
+[21:26:48] Epoch 9 [         ] loss: 0.158
+[21:26:55] Epoch 9 [>        ] loss: 0.145
+[21:27:02] Epoch 9 [=>       ] loss: 0.189
+[21:27:10] Epoch 9 [==>      ] loss: 0.236
+[21:27:18] Epoch 9 [===>     ] loss: 0.226
+[21:27:26] Epoch 9 [====>    ] loss: 0.206
+[21:27:34] Epoch 9 [=====>   ] loss: 0.228
+[21:27:41] Epoch 9 [======>  ] loss: 0.253
+[21:27:48] Epoch 9 [=======> ] loss: 0.254
+[21:27:56] Epoch 9 [========>] loss: 0.249
+Test accuracy of the cnn on the 10000 test images: 68.35%
+[21:28:08] Epoch 10 [         ] loss: 0.141
+[21:28:15] Epoch 10 [>        ] loss: 0.147
+[21:28:22] Epoch 10 [=>       ] loss: 0.157
+[21:28:30] Epoch 10 [==>      ] loss: 0.173
+[21:28:37] Epoch 10 [===>     ] loss: 0.196
+[21:28:44] Epoch 10 [====>    ] loss: 0.201
+[21:28:51] Epoch 10 [=====>   ] loss: 0.206
+[21:28:59] Epoch 10 [======>  ] loss: 0.219
+[21:29:06] Epoch 10 [=======> ] loss: 0.197
+[21:29:13] Epoch 10 [========>] loss: 0.214
+Test accuracy of the cnn on the 10000 test images: 67.85%
+Finished Training
+Results generated with seed 874450
