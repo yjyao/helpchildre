@@ -1,0 +1,1030 @@
+Using seed 874450
+CNN(
+  (encoder): Sequential(
+    (0): ConvLayer(
+      (0): Conv2d(3, 16, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+      (1): ReLU()
+      (2): Dropout(p=0.2)
+    )
+    (1): ConvLayer(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): ReLU()
+      (2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (3): Dropout(p=0.25)
+    )
+    (2): ConvLayer(
+      (0): Conv2d(16, 32, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+      (1): ReLU()
+      (2): Dropout(p=0.5)
+    )
+    (3): ConvLayer(
+      (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (1): ReLU()
+      (2): Dropout(p=0.5)
+    )
+  )
+  (decoder): Sequential(
+    (0): FcLayer(
+      (0): BatchNorm1d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (1): Linear(in_features=2048, out_features=218, bias=True)
+      (2): ReLU()
+    )
+    (1): FcLayer(
+      (0): Linear(in_features=218, out_features=10, bias=True)
+    )
+  )
+)
+Using 478,584 parameters
+[('encoder.0.0.weight', 1200), ('encoder.0.0.bias', 16), ('encoder.1.0.weight', 2304), ('encoder.1.0.bias', 16), ('encoder.2.0.weight', 12800), ('encoder.2.0.bias', 32), ('encoder.3.0.weight', 9216), ('encoder.3.0.bias', 32), ('decoder.0.0.weight', 2048), ('decoder.0.0.bias', 2048), ('decoder.0.1.weight', 446464), ('decoder.0.1.bias', 218), ('decoder.1.0.weight', 2180), ('decoder.1.0.bias', 10)]
+TRAINING
+==============================
+Epoches: 82
+Batch size: 128
+Learning rate: 0.001
+
+[17:37:45] Epoch 1 [         ] loss: 2.126
+[17:37:49] Epoch 1 [>        ] loss: 1.794
+[17:37:52] Epoch 1 [=>       ] loss: 1.669
+[17:37:56] Epoch 1 [==>      ] loss: 1.621
+[17:37:59] Epoch 1 [===>     ] loss: 1.540
+[17:38:03] Epoch 1 [====>    ] loss: 1.504
+[17:38:06] Epoch 1 [=====>   ] loss: 1.453
+[17:38:09] Epoch 1 [======>  ] loss: 1.442
+[17:38:13] Epoch 1 [=======> ] loss: 1.424
+[17:38:16] Epoch 1 [========>] loss: 1.399
+[train images]	 avg loss: 1.309, accuracy:  53.18%
+[test images]	 avg loss: 1.317, accuracy:  52.41%
+[17:38:35] Epoch 2 [         ] loss: 1.348
+[17:38:38] Epoch 2 [>        ] loss: 1.329
+[17:38:42] Epoch 2 [=>       ] loss: 1.328
+[17:38:45] Epoch 2 [==>      ] loss: 1.296
+[17:38:48] Epoch 2 [===>     ] loss: 1.318
+[17:38:52] Epoch 2 [====>    ] loss: 1.269
+[17:38:55] Epoch 2 [=====>   ] loss: 1.282
+[17:38:59] Epoch 2 [======>  ] loss: 1.243
+[17:39:02] Epoch 2 [=======> ] loss: 1.248
+[17:39:05] Epoch 2 [========>] loss: 1.249
+[train images]	 avg loss: 1.143v, accuracy:  58.80%^
+[test images]	 avg loss: 1.175v, accuracy:  57.56%^
+[17:39:24] Epoch 3 [         ] loss: 1.218
+[17:39:28] Epoch 3 [>        ] loss: 1.191
+[17:39:31] Epoch 3 [=>       ] loss: 1.195
+[17:39:35] Epoch 3 [==>      ] loss: 1.201
+[17:39:38] Epoch 3 [===>     ] loss: 1.167
+[17:39:42] Epoch 3 [====>    ] loss: 1.134
+[17:39:45] Epoch 3 [=====>   ] loss: 1.134
+[17:39:49] Epoch 3 [======>  ] loss: 1.168
+[17:39:52] Epoch 3 [=======> ] loss: 1.112
+[17:39:56] Epoch 3 [========>] loss: 1.134
+[train images]	 avg loss: 0.983v, accuracy:  65.32%^
+[test images]	 avg loss: 1.036v, accuracy:  63.25%^
+[17:40:14] Epoch 4 [         ] loss: 1.081
+[17:40:18] Epoch 4 [>        ] loss: 1.101
+[17:40:21] Epoch 4 [=>       ] loss: 1.077
+[17:40:24] Epoch 4 [==>      ] loss: 1.118
+[17:40:28] Epoch 4 [===>     ] loss: 1.099
+[17:40:31] Epoch 4 [====>    ] loss: 1.075
+[17:40:35] Epoch 4 [=====>   ] loss: 1.075
+[17:40:38] Epoch 4 [======>  ] loss: 1.077
+[17:40:41] Epoch 4 [=======> ] loss: 1.088
+[17:40:45] Epoch 4 [========>] loss: 1.052
+[train images]	 avg loss: 0.920v, accuracy:  67.22%^
+[test images]	 avg loss: 0.990v, accuracy:  64.70%^
+[17:41:04] Epoch 5 [         ] loss: 0.999
+[17:41:07] Epoch 5 [>        ] loss: 1.027
+[17:41:10] Epoch 5 [=>       ] loss: 1.034
+[17:41:14] Epoch 5 [==>      ] loss: 1.040
+[17:41:17] Epoch 5 [===>     ] loss: 1.010
+[17:41:21] Epoch 5 [====>    ] loss: 1.012
+[17:41:24] Epoch 5 [=====>   ] loss: 1.016
+[17:41:28] Epoch 5 [======>  ] loss: 1.010
+[17:41:31] Epoch 5 [=======> ] loss: 1.006
+[17:41:35] Epoch 5 [========>] loss: 1.008
+[train images]	 avg loss: 0.831v, accuracy:  70.93%^
+[test images]	 avg loss: 0.920v, accuracy:  67.54%^
+[17:41:54] Epoch 6 [         ] loss: 0.951
+[17:41:57] Epoch 6 [>        ] loss: 0.957
+[17:42:01] Epoch 6 [=>       ] loss: 0.972
+[17:42:04] Epoch 6 [==>      ] loss: 0.943
+[17:42:08] Epoch 6 [===>     ] loss: 0.972
+[17:42:11] Epoch 6 [====>    ] loss: 0.930
+[17:42:15] Epoch 6 [=====>   ] loss: 0.959
+[17:42:18] Epoch 6 [======>  ] loss: 0.960
+[17:42:21] Epoch 6 [=======> ] loss: 0.947
+[17:42:25] Epoch 6 [========>] loss: 0.979
+[train images]	 avg loss: 0.752v, accuracy:  73.76%^
+[test images]	 avg loss: 0.855v, accuracy:  69.82%^
+[17:42:43] Epoch 7 [         ] loss: 0.901
+[17:42:47] Epoch 7 [>        ] loss: 0.909
+[17:42:50] Epoch 7 [=>       ] loss: 0.882
+[17:42:54] Epoch 7 [==>      ] loss: 0.925
+[17:42:58] Epoch 7 [===>     ] loss: 0.917
+[17:43:01] Epoch 7 [====>    ] loss: 0.919
+[17:43:05] Epoch 7 [=====>   ] loss: 0.902
+[17:43:08] Epoch 7 [======>  ] loss: 0.904
+[17:43:11] Epoch 7 [=======> ] loss: 0.924
+[17:43:15] Epoch 7 [========>] loss: 0.906
+[train images]	 avg loss: 0.690v, accuracy:  75.68%^
+[test images]	 avg loss: 0.813v, accuracy:  71.26%^
+[17:43:34] Epoch 8 [         ] loss: 0.847
+[17:43:37] Epoch 8 [>        ] loss: 0.870
+[17:43:41] Epoch 8 [=>       ] loss: 0.873
+[17:43:44] Epoch 8 [==>      ] loss: 0.875
+[17:43:47] Epoch 8 [===>     ] loss: 0.848
+[17:43:51] Epoch 8 [====>    ] loss: 0.871
+[17:43:54] Epoch 8 [=====>   ] loss: 0.867
+[17:43:58] Epoch 8 [======>  ] loss: 0.853
+[17:44:01] Epoch 8 [=======> ] loss: 0.854
+[17:44:05] Epoch 8 [========>] loss: 0.867
+[train images]	 avg loss: 0.670v, accuracy:  76.61%^
+[test images]	 avg loss: 0.799v, accuracy:  72.24%^
+[17:44:23] Epoch 9 [         ] loss: 0.831
+[17:44:27] Epoch 9 [>        ] loss: 0.841
+[17:44:30] Epoch 9 [=>       ] loss: 0.840
+[17:44:33] Epoch 9 [==>      ] loss: 0.786
+[17:44:37] Epoch 9 [===>     ] loss: 0.846
+[17:44:40] Epoch 9 [====>    ] loss: 0.850
+[17:44:44] Epoch 9 [=====>   ] loss: 0.823
+[17:44:48] Epoch 9 [======>  ] loss: 0.806
+[17:44:52] Epoch 9 [=======> ] loss: 0.834
+[17:44:56] Epoch 9 [========>] loss: 0.841
+[train images]	 avg loss: 0.616v, accuracy:  78.25%^
+[test images]	 avg loss: 0.759v, accuracy:  73.38%^
+[17:45:17] Epoch 10 [         ] loss: 0.793
+[17:45:21] Epoch 10 [>        ] loss: 0.789
+[17:45:25] Epoch 10 [=>       ] loss: 0.821
+[17:45:29] Epoch 10 [==>      ] loss: 0.796
+[17:45:33] Epoch 10 [===>     ] loss: 0.809
+[17:45:37] Epoch 10 [====>    ] loss: 0.795
+[17:45:40] Epoch 10 [=====>   ] loss: 0.784
+[17:45:44] Epoch 10 [======>  ] loss: 0.824
+[17:45:47] Epoch 10 [=======> ] loss: 0.819
+[17:45:51] Epoch 10 [========>] loss: 0.804
+[train images]	 avg loss: 0.594v, accuracy:  79.29%^
+[test images]	 avg loss: 0.748v, accuracy:  73.94%^
+[17:46:10] Epoch 11 [         ] loss: 0.755
+[17:46:14] Epoch 11 [>        ] loss: 0.782
+[17:46:17] Epoch 11 [=>       ] loss: 0.752
+[17:46:21] Epoch 11 [==>      ] loss: 0.788
+[17:46:24] Epoch 11 [===>     ] loss: 0.799
+[17:46:28] Epoch 11 [====>    ] loss: 0.791
+[17:46:32] Epoch 11 [=====>   ] loss: 0.766
+[17:46:35] Epoch 11 [======>  ] loss: 0.775
+[17:46:39] Epoch 11 [=======> ] loss: 0.798
+[17:46:43] Epoch 11 [========>] loss: 0.785
+[train images]	 avg loss: 0.566v, accuracy:  80.27%^
+[test images]	 avg loss: 0.730v, accuracy:  74.27%^
+[17:47:02] Epoch 12 [         ] loss: 0.754
+[17:47:06] Epoch 12 [>        ] loss: 0.736
+[17:47:09] Epoch 12 [=>       ] loss: 0.750
+[17:47:13] Epoch 12 [==>      ] loss: 0.761
+[17:47:16] Epoch 12 [===>     ] loss: 0.755
+[17:47:20] Epoch 12 [====>    ] loss: 0.752
+[17:47:23] Epoch 12 [=====>   ] loss: 0.766
+[17:47:27] Epoch 12 [======>  ] loss: 0.750
+[17:47:30] Epoch 12 [=======> ] loss: 0.758
+[17:47:34] Epoch 12 [========>] loss: 0.770
+[train images]	 avg loss: 0.528v, accuracy:  81.63%^
+[test images]	 avg loss: 0.718v, accuracy:  75.29%^
+[17:47:53] Epoch 13 [         ] loss: 0.723
+[17:47:57] Epoch 13 [>        ] loss: 0.705
+[17:48:00] Epoch 13 [=>       ] loss: 0.733
+[17:48:04] Epoch 13 [==>      ] loss: 0.754
+[17:48:07] Epoch 13 [===>     ] loss: 0.747
+[17:48:10] Epoch 13 [====>    ] loss: 0.725
+[17:48:14] Epoch 13 [=====>   ] loss: 0.730
+[17:48:18] Epoch 13 [======>  ] loss: 0.739
+[17:48:21] Epoch 13 [=======> ] loss: 0.758
+[17:48:25] Epoch 13 [========>] loss: 0.754
+[train images]	 avg loss: 0.507v, accuracy:  82.63%^
+[test images]	 avg loss: 0.705v, accuracy:  75.78%^
+[17:48:43] Epoch 14 [         ] loss: 0.711
+[17:48:47] Epoch 14 [>        ] loss: 0.703
+[17:48:50] Epoch 14 [=>       ] loss: 0.707
+[17:48:54] Epoch 14 [==>      ] loss: 0.718
+[17:48:58] Epoch 14 [===>     ] loss: 0.726
+[17:49:01] Epoch 14 [====>    ] loss: 0.754
+[17:49:04] Epoch 14 [=====>   ] loss: 0.727
+[17:49:08] Epoch 14 [======>  ] loss: 0.734
+[17:49:11] Epoch 14 [=======> ] loss: 0.747
+[17:49:15] Epoch 14 [========>] loss: 0.749
+[train images]	 avg loss: 0.516^, accuracy:  82.11%v
+[test images]	 avg loss: 0.714^, accuracy:  75.46%v
+[17:49:34] Epoch 15 [         ] loss: 0.703
+[17:49:37] Epoch 15 [>        ] loss: 0.705
+[17:49:41] Epoch 15 [=>       ] loss: 0.706
+[17:49:44] Epoch 15 [==>      ] loss: 0.709
+[17:49:48] Epoch 15 [===>     ] loss: 0.691
+[17:49:51] Epoch 15 [====>    ] loss: 0.720
+[17:49:55] Epoch 15 [=====>   ] loss: 0.707
+[17:49:58] Epoch 15 [======>  ] loss: 0.693
+[17:50:02] Epoch 15 [=======> ] loss: 0.687
+[17:50:05] Epoch 15 [========>] loss: 0.724
+[train images]	 avg loss: 0.469v, accuracy:  83.93%^
+[test images]	 avg loss: 0.695v, accuracy:  75.92%^
+[17:50:24] Epoch 16 [         ] loss: 0.673
+[17:50:27] Epoch 16 [>        ] loss: 0.665
+[17:50:31] Epoch 16 [=>       ] loss: 0.707
+[17:50:35] Epoch 16 [==>      ] loss: 0.703
+[17:50:38] Epoch 16 [===>     ] loss: 0.682
+[17:50:42] Epoch 16 [====>    ] loss: 0.701
+[17:50:45] Epoch 16 [=====>   ] loss: 0.701
+[17:50:48] Epoch 16 [======>  ] loss: 0.704
+[17:50:52] Epoch 16 [=======> ] loss: 0.703
+[17:50:55] Epoch 16 [========>] loss: 0.705
+[train images]	 avg loss: 0.462v, accuracy:  84.22%^
+[test images]	 avg loss: 0.688v, accuracy:  75.98%^
+[17:51:14] Epoch 17 [         ] loss: 0.670
+[17:51:18] Epoch 17 [>        ] loss: 0.669
+[17:51:21] Epoch 17 [=>       ] loss: 0.677
+[17:51:25] Epoch 17 [==>      ] loss: 0.684
+[17:51:28] Epoch 17 [===>     ] loss: 0.660
+[17:51:32] Epoch 17 [====>    ] loss: 0.688
+[17:51:35] Epoch 17 [=====>   ] loss: 0.686
+[17:51:39] Epoch 17 [======>  ] loss: 0.662
+[17:51:42] Epoch 17 [=======> ] loss: 0.697
+[17:51:46] Epoch 17 [========>] loss: 0.711
+[train images]	 avg loss: 0.466^, accuracy:  84.25%^
+[test images]	 avg loss: 0.696^, accuracy:  75.75%v
+[17:52:05] Epoch 18 [         ] loss: 0.661
+[17:52:08] Epoch 18 [>        ] loss: 0.651
+[17:52:12] Epoch 18 [=>       ] loss: 0.673
+[17:52:15] Epoch 18 [==>      ] loss: 0.692
+[17:52:19] Epoch 18 [===>     ] loss: 0.678
+[17:52:22] Epoch 18 [====>    ] loss: 0.657
+[17:52:26] Epoch 18 [=====>   ] loss: 0.651
+[17:52:29] Epoch 18 [======>  ] loss: 0.686
+[17:52:33] Epoch 18 [=======> ] loss: 0.678
+[17:52:36] Epoch 18 [========>] loss: 0.656
+[train images]	 avg loss: 0.431v, accuracy:  85.22%^
+[test images]	 avg loss: 0.688v, accuracy:  76.51%^
+[17:52:55] Epoch 19 [         ] loss: 0.666
+[17:52:58] Epoch 19 [>        ] loss: 0.653
+[17:53:02] Epoch 19 [=>       ] loss: 0.699
+[17:53:05] Epoch 19 [==>      ] loss: 0.654
+[17:53:09] Epoch 19 [===>     ] loss: 0.635
+[17:53:12] Epoch 19 [====>    ] loss: 0.655
+[17:53:16] Epoch 19 [=====>   ] loss: 0.646
+[17:53:19] Epoch 19 [======>  ] loss: 0.667
+[17:53:23] Epoch 19 [=======> ] loss: 0.643
+[17:53:26] Epoch 19 [========>] loss: 0.669
+[train images]	 avg loss: 0.416v, accuracy:  85.76%^
+[test images]	 avg loss: 0.680v, accuracy:  76.80%^
+[17:53:45] Epoch 20 [         ] loss: 0.643
+[17:53:49] Epoch 20 [>        ] loss: 0.640
+[17:53:52] Epoch 20 [=>       ] loss: 0.630
+[17:53:56] Epoch 20 [==>      ] loss: 0.646
+[17:53:59] Epoch 20 [===>     ] loss: 0.632
+[17:54:03] Epoch 20 [====>    ] loss: 0.623
+[17:54:06] Epoch 20 [=====>   ] loss: 0.660
+[17:54:10] Epoch 20 [======>  ] loss: 0.666
+[17:54:13] Epoch 20 [=======> ] loss: 0.652
+[17:54:17] Epoch 20 [========>] loss: 0.656
+[train images]	 avg loss: 0.403v, accuracy:  86.54%^
+[test images]	 avg loss: 0.672v, accuracy:  76.64%v
+[17:54:35] Epoch 21 [         ] loss: 0.609
+[17:54:39] Epoch 21 [>        ] loss: 0.641
+[17:54:42] Epoch 21 [=>       ] loss: 0.632
+[17:54:46] Epoch 21 [==>      ] loss: 0.647
+[17:54:49] Epoch 21 [===>     ] loss: 0.632
+[17:54:53] Epoch 21 [====>    ] loss: 0.673
+[17:54:57] Epoch 21 [=====>   ] loss: 0.633
+[17:55:00] Epoch 21 [======>  ] loss: 0.668
+[17:55:04] Epoch 21 [=======> ] loss: 0.638
+[17:55:07] Epoch 21 [========>] loss: 0.637
+[train images]	 avg loss: 0.392v, accuracy:  86.95%^
+[test images]	 avg loss: 0.663v, accuracy:  77.27%^
+[17:55:26] Epoch 22 [         ] loss: 0.614
+[17:55:29] Epoch 22 [>        ] loss: 0.636
+[17:55:33] Epoch 22 [=>       ] loss: 0.636
+[17:55:36] Epoch 22 [==>      ] loss: 0.643
+[17:55:40] Epoch 22 [===>     ] loss: 0.631
+[17:55:43] Epoch 22 [====>    ] loss: 0.650
+[17:55:47] Epoch 22 [=====>   ] loss: 0.622
+[17:55:51] Epoch 22 [======>  ] loss: 0.630
+[17:55:54] Epoch 22 [=======> ] loss: 0.616
+[17:55:58] Epoch 22 [========>] loss: 0.618
+[train images]	 avg loss: 0.392v, accuracy:  86.78%v
+[test images]	 avg loss: 0.672^, accuracy:  77.19%v
+[17:56:17] Epoch 23 [         ] loss: 0.611
+[17:56:20] Epoch 23 [>        ] loss: 0.598
+[17:56:23] Epoch 23 [=>       ] loss: 0.626
+[17:56:27] Epoch 23 [==>      ] loss: 0.648
+[17:56:30] Epoch 23 [===>     ] loss: 0.598
+[17:56:34] Epoch 23 [====>    ] loss: 0.620
+[17:56:37] Epoch 23 [=====>   ] loss: 0.629
+[17:56:41] Epoch 23 [======>  ] loss: 0.619
+[17:56:44] Epoch 23 [=======> ] loss: 0.614
+[17:56:48] Epoch 23 [========>] loss: 0.607
+[train images]	 avg loss: 0.374v, accuracy:  87.38%^
+[test images]	 avg loss: 0.663v, accuracy:  77.77%^
+[17:57:07] Epoch 24 [         ] loss: 0.597
+[17:57:10] Epoch 24 [>        ] loss: 0.566
+[17:57:14] Epoch 24 [=>       ] loss: 0.639
+[17:57:17] Epoch 24 [==>      ] loss: 0.608
+[17:57:21] Epoch 24 [===>     ] loss: 0.616
+[17:57:24] Epoch 24 [====>    ] loss: 0.652
+[17:57:28] Epoch 24 [=====>   ] loss: 0.637
+[17:57:31] Epoch 24 [======>  ] loss: 0.608
+[17:57:35] Epoch 24 [=======> ] loss: 0.629
+[17:57:38] Epoch 24 [========>] loss: 0.586
+[train images]	 avg loss: 0.358v, accuracy:  88.20%^
+[test images]	 avg loss: 0.657v, accuracy:  77.77%=
+[17:57:57] Epoch 25 [         ] loss: 0.581
+[17:58:00] Epoch 25 [>        ] loss: 0.589
+[17:58:04] Epoch 25 [=>       ] loss: 0.581
+[17:58:07] Epoch 25 [==>      ] loss: 0.630
+[17:58:10] Epoch 25 [===>     ] loss: 0.597
+[17:58:14] Epoch 25 [====>    ] loss: 0.646
+[17:58:18] Epoch 25 [=====>   ] loss: 0.613
+[17:58:21] Epoch 25 [======>  ] loss: 0.612
+[17:58:25] Epoch 25 [=======> ] loss: 0.615
+[17:58:28] Epoch 25 [========>] loss: 0.612
+[train images]	 avg loss: 0.362^, accuracy:  87.60%v
+[test images]	 avg loss: 0.683^, accuracy:  76.67%v
+[17:58:47] Epoch 26 [         ] loss: 0.599
+[17:58:50] Epoch 26 [>        ] loss: 0.588
+[17:58:54] Epoch 26 [=>       ] loss: 0.586
+[17:58:57] Epoch 26 [==>      ] loss: 0.591
+[17:59:01] Epoch 26 [===>     ] loss: 0.625
+[17:59:04] Epoch 26 [====>    ] loss: 0.622
+[17:59:08] Epoch 26 [=====>   ] loss: 0.617
+[17:59:11] Epoch 26 [======>  ] loss: 0.593
+[17:59:15] Epoch 26 [=======> ] loss: 0.601
+[17:59:18] Epoch 26 [========>] loss: 0.612
+[train images]	 avg loss: 0.345v, accuracy:  88.58%^
+[test images]	 avg loss: 0.652v, accuracy:  77.75%^
+[17:59:37] Epoch 27 [         ] loss: 0.566
+[17:59:41] Epoch 27 [>        ] loss: 0.590
+[17:59:44] Epoch 27 [=>       ] loss: 0.580
+[17:59:48] Epoch 27 [==>      ] loss: 0.620
+[17:59:52] Epoch 27 [===>     ] loss: 0.614
+[17:59:55] Epoch 27 [====>    ] loss: 0.587
+[17:59:59] Epoch 27 [=====>   ] loss: 0.606
+[18:00:02] Epoch 27 [======>  ] loss: 0.594
+[18:00:06] Epoch 27 [=======> ] loss: 0.578
+[18:00:09] Epoch 27 [========>] loss: 0.611
+[train images]	 avg loss: 0.354^, accuracy:  88.48%v
+[test images]	 avg loss: 0.662^, accuracy:  77.56%v
+[18:00:28] Epoch 28 [         ] loss: 0.557
+[18:00:31] Epoch 28 [>        ] loss: 0.590
+[18:00:35] Epoch 28 [=>       ] loss: 0.592
+[18:00:39] Epoch 28 [==>      ] loss: 0.578
+[18:00:42] Epoch 28 [===>     ] loss: 0.584
+[18:00:46] Epoch 28 [====>    ] loss: 0.587
+[18:00:50] Epoch 28 [=====>   ] loss: 0.596
+[18:00:54] Epoch 28 [======>  ] loss: 0.606
+[18:00:58] Epoch 28 [=======> ] loss: 0.611
+[18:01:02] Epoch 28 [========>] loss: 0.574
+[train images]	 avg loss: 0.339v, accuracy:  88.69%^
+[test images]	 avg loss: 0.664^, accuracy:  77.44%v
+[18:01:22] Epoch 29 [         ] loss: 0.572
+[18:01:26] Epoch 29 [>        ] loss: 0.590
+[18:01:30] Epoch 29 [=>       ] loss: 0.599
+[18:01:34] Epoch 29 [==>      ] loss: 0.585
+[18:01:38] Epoch 29 [===>     ] loss: 0.592
+[18:01:42] Epoch 29 [====>    ] loss: 0.561
+[18:01:46] Epoch 29 [=====>   ] loss: 0.581
+[18:01:50] Epoch 29 [======>  ] loss: 0.583
+[18:01:54] Epoch 29 [=======> ] loss: 0.595
+[18:01:58] Epoch 29 [========>] loss: 0.592
+[train images]	 avg loss: 0.337v, accuracy:  89.03%^
+[test images]	 avg loss: 0.669^, accuracy:  77.51%^
+[18:02:17] Epoch 30 [         ] loss: 0.565
+[18:02:21] Epoch 30 [>        ] loss: 0.571
+[18:02:25] Epoch 30 [=>       ] loss: 0.562
+[18:02:29] Epoch 30 [==>      ] loss: 0.562
+[18:02:33] Epoch 30 [===>     ] loss: 0.576
+[18:02:37] Epoch 30 [====>    ] loss: 0.560
+[18:02:41] Epoch 30 [=====>   ] loss: 0.584
+[18:02:45] Epoch 30 [======>  ] loss: 0.585
+[18:02:49] Epoch 30 [=======> ] loss: 0.596
+[18:02:53] Epoch 30 [========>] loss: 0.576
+[train images]	 avg loss: 0.330v, accuracy:  89.22%^
+[test images]	 avg loss: 0.657v, accuracy:  77.71%^
+[18:03:12] Epoch 31 [         ] loss: 0.563
+[18:03:16] Epoch 31 [>        ] loss: 0.549
+[18:03:20] Epoch 31 [=>       ] loss: 0.548
+[18:03:24] Epoch 31 [==>      ] loss: 0.582
+[18:03:28] Epoch 31 [===>     ] loss: 0.566
+[18:03:32] Epoch 31 [====>    ] loss: 0.564
+[18:03:36] Epoch 31 [=====>   ] loss: 0.577
+[18:03:40] Epoch 31 [======>  ] loss: 0.582
+[18:03:44] Epoch 31 [=======> ] loss: 0.582
+[18:03:48] Epoch 31 [========>] loss: 0.581
+[train images]	 avg loss: 0.312v, accuracy:  90.00%^
+[test images]	 avg loss: 0.649v, accuracy:  77.94%^
+[18:04:07] Epoch 32 [         ] loss: 0.552
+[18:04:11] Epoch 32 [>        ] loss: 0.555
+[18:04:15] Epoch 32 [=>       ] loss: 0.544
+[18:04:19] Epoch 32 [==>      ] loss: 0.565
+[18:04:23] Epoch 32 [===>     ] loss: 0.580
+[18:04:27] Epoch 32 [====>    ] loss: 0.584
+[18:04:30] Epoch 32 [=====>   ] loss: 0.572
+[18:04:34] Epoch 32 [======>  ] loss: 0.554
+[18:04:38] Epoch 32 [=======> ] loss: 0.582
+[18:04:42] Epoch 32 [========>] loss: 0.567
+[train images]	 avg loss: 0.301v, accuracy:  90.17%^
+[test images]	 avg loss: 0.653^, accuracy:  77.86%v
+[18:05:01] Epoch 33 [         ] loss: 0.540
+[18:05:05] Epoch 33 [>        ] loss: 0.562
+[18:05:09] Epoch 33 [=>       ] loss: 0.531
+[18:05:13] Epoch 33 [==>      ] loss: 0.576
+[18:05:17] Epoch 33 [===>     ] loss: 0.522
+[18:05:21] Epoch 33 [====>    ] loss: 0.584
+[18:05:25] Epoch 33 [=====>   ] loss: 0.566
+[18:05:29] Epoch 33 [======>  ] loss: 0.566
+[18:05:33] Epoch 33 [=======> ] loss: 0.574
+[18:05:36] Epoch 33 [========>] loss: 0.569
+[train images]	 avg loss: 0.302^, accuracy:  90.41%^
+[test images]	 avg loss: 0.653v, accuracy:  78.24%^
+[18:05:55] Epoch 34 [         ] loss: 0.524
+[18:06:00] Epoch 34 [>        ] loss: 0.544
+[18:06:04] Epoch 34 [=>       ] loss: 0.570
+[18:06:08] Epoch 34 [==>      ] loss: 0.549
+[18:06:11] Epoch 34 [===>     ] loss: 0.554
+[18:06:15] Epoch 34 [====>    ] loss: 0.582
+[18:06:19] Epoch 34 [=====>   ] loss: 0.540
+[18:06:23] Epoch 34 [======>  ] loss: 0.545
+[18:06:27] Epoch 34 [=======> ] loss: 0.567
+[18:06:31] Epoch 34 [========>] loss: 0.559
+[train images]	 avg loss: 0.286v, accuracy:  90.98%^
+[test images]	 avg loss: 0.647v, accuracy:  78.51%^
+[18:06:51] Epoch 35 [         ] loss: 0.541
+[18:06:55] Epoch 35 [>        ] loss: 0.542
+[18:06:59] Epoch 35 [=>       ] loss: 0.528
+[18:07:03] Epoch 35 [==>      ] loss: 0.524
+[18:07:06] Epoch 35 [===>     ] loss: 0.536
+[18:07:10] Epoch 35 [====>    ] loss: 0.555
+[18:07:14] Epoch 35 [=====>   ] loss: 0.572
+[18:07:18] Epoch 35 [======>  ] loss: 0.547
+[18:07:22] Epoch 35 [=======> ] loss: 0.556
+[18:07:26] Epoch 35 [========>] loss: 0.554
+[train images]	 avg loss: 0.281v, accuracy:  91.27%^
+[test images]	 avg loss: 0.648^, accuracy:  78.40%v
+[18:07:46] Epoch 36 [         ] loss: 0.532
+[18:07:50] Epoch 36 [>        ] loss: 0.501
+[18:07:54] Epoch 36 [=>       ] loss: 0.543
+[18:07:58] Epoch 36 [==>      ] loss: 0.543
+[18:08:02] Epoch 36 [===>     ] loss: 0.539
+[18:08:06] Epoch 36 [====>    ] loss: 0.548
+[18:08:09] Epoch 36 [=====>   ] loss: 0.557
+[18:08:13] Epoch 36 [======>  ] loss: 0.538
+[18:08:17] Epoch 36 [=======> ] loss: 0.580
+[18:08:21] Epoch 36 [========>] loss: 0.559
+[train images]	 avg loss: 0.278v, accuracy:  91.38%^
+[test images]	 avg loss: 0.643v, accuracy:  78.28%v
+[18:08:40] Epoch 37 [         ] loss: 0.511
+[18:08:44] Epoch 37 [>        ] loss: 0.551
+[18:08:48] Epoch 37 [=>       ] loss: 0.554
+[18:08:52] Epoch 37 [==>      ] loss: 0.523
+[18:08:56] Epoch 37 [===>     ] loss: 0.539
+[18:09:00] Epoch 37 [====>    ] loss: 0.554
+[18:09:04] Epoch 37 [=====>   ] loss: 0.534
+[18:09:08] Epoch 37 [======>  ] loss: 0.561
+[18:09:12] Epoch 37 [=======> ] loss: 0.543
+[18:09:16] Epoch 37 [========>] loss: 0.553
+[train images]	 avg loss: 0.291^, accuracy:  90.69%v
+[test images]	 avg loss: 0.661^, accuracy:  78.06%v
+[18:09:35] Epoch 38 [         ] loss: 0.518
+[18:09:39] Epoch 38 [>        ] loss: 0.530
+[18:09:43] Epoch 38 [=>       ] loss: 0.522
+[18:09:47] Epoch 38 [==>      ] loss: 0.522
+[18:09:51] Epoch 38 [===>     ] loss: 0.541
+[18:09:55] Epoch 38 [====>    ] loss: 0.530
+[18:09:59] Epoch 38 [=====>   ] loss: 0.545
+[18:10:03] Epoch 38 [======>  ] loss: 0.550
+[18:10:07] Epoch 38 [=======> ] loss: 0.546
+[18:10:11] Epoch 38 [========>] loss: 0.576
+[train images]	 avg loss: 0.272v, accuracy:  91.60%^
+[test images]	 avg loss: 0.644v, accuracy:  78.48%^
+[18:10:30] Epoch 39 [         ] loss: 0.542
+[18:10:34] Epoch 39 [>        ] loss: 0.499
+[18:10:38] Epoch 39 [=>       ] loss: 0.524
+[18:10:42] Epoch 39 [==>      ] loss: 0.537
+[18:10:46] Epoch 39 [===>     ] loss: 0.543
+[18:10:50] Epoch 39 [====>    ] loss: 0.548
+[18:10:54] Epoch 39 [=====>   ] loss: 0.518
+[18:10:58] Epoch 39 [======>  ] loss: 0.555
+[18:11:02] Epoch 39 [=======> ] loss: 0.541
+[18:11:06] Epoch 39 [========>] loss: 0.532
+[train images]	 avg loss: 0.268v, accuracy:  91.69%^
+[test images]	 avg loss: 0.655^, accuracy:  78.42%v
+[18:11:25] Epoch 40 [         ] loss: 0.515
+[18:11:29] Epoch 40 [>        ] loss: 0.516
+[18:11:33] Epoch 40 [=>       ] loss: 0.525
+[18:11:37] Epoch 40 [==>      ] loss: 0.499
+[18:11:41] Epoch 40 [===>     ] loss: 0.557
+[18:11:45] Epoch 40 [====>    ] loss: 0.544
+[18:11:49] Epoch 40 [=====>   ] loss: 0.526
+[18:11:52] Epoch 40 [======>  ] loss: 0.527
+[18:11:56] Epoch 40 [=======> ] loss: 0.521
+[18:12:00] Epoch 40 [========>] loss: 0.556
+[train images]	 avg loss: 0.268v, accuracy:  91.68%v
+[test images]	 avg loss: 0.651v, accuracy:  77.91%v
+[18:12:20] Epoch 41 [         ] loss: 0.505
+[18:12:24] Epoch 41 [>        ] loss: 0.504
+[18:12:28] Epoch 41 [=>       ] loss: 0.510
+[18:12:32] Epoch 41 [==>      ] loss: 0.501
+[18:12:36] Epoch 41 [===>     ] loss: 0.517
+[18:12:40] Epoch 41 [====>    ] loss: 0.532
+[18:12:44] Epoch 41 [=====>   ] loss: 0.544
+[18:12:48] Epoch 41 [======>  ] loss: 0.562
+[18:12:52] Epoch 41 [=======> ] loss: 0.527
+[18:12:56] Epoch 41 [========>] loss: 0.538
+[train images]	 avg loss: 0.268v, accuracy:  91.38%v
+[test images]	 avg loss: 0.653^, accuracy:  77.90%v
+[18:13:15] Epoch 42 [         ] loss: 0.518
+[18:13:19] Epoch 42 [>        ] loss: 0.502
+[18:13:23] Epoch 42 [=>       ] loss: 0.500
+[18:13:27] Epoch 42 [==>      ] loss: 0.514
+[18:13:31] Epoch 42 [===>     ] loss: 0.507
+[18:13:35] Epoch 42 [====>    ] loss: 0.525
+[18:13:39] Epoch 42 [=====>   ] loss: 0.526
+[18:13:43] Epoch 42 [======>  ] loss: 0.538
+[18:13:47] Epoch 42 [=======> ] loss: 0.512
+[18:13:51] Epoch 42 [========>] loss: 0.538
+[train images]	 avg loss: 0.254v, accuracy:  92.33%^
+[test images]	 avg loss: 0.647v, accuracy:  78.43%^
+[18:14:10] Epoch 43 [         ] loss: 0.514
+[18:14:14] Epoch 43 [>        ] loss: 0.508
+[18:14:18] Epoch 43 [=>       ] loss: 0.528
+[18:14:22] Epoch 43 [==>      ] loss: 0.522
+[18:14:25] Epoch 43 [===>     ] loss: 0.524
+[18:14:29] Epoch 43 [====>    ] loss: 0.515
+[18:14:33] Epoch 43 [=====>   ] loss: 0.516
+[18:14:37] Epoch 43 [======>  ] loss: 0.522
+[18:14:41] Epoch 43 [=======> ] loss: 0.519
+[18:14:45] Epoch 43 [========>] loss: 0.519
+[train images]	 avg loss: 0.255^, accuracy:  92.14%v
+[test images]	 avg loss: 0.648^, accuracy:  78.39%v
+[18:15:05] Epoch 44 [         ] loss: 0.484
+[18:15:08] Epoch 44 [>        ] loss: 0.508
+[18:15:12] Epoch 44 [=>       ] loss: 0.509
+[18:15:16] Epoch 44 [==>      ] loss: 0.504
+[18:15:20] Epoch 44 [===>     ] loss: 0.515
+[18:15:24] Epoch 44 [====>    ] loss: 0.521
+[18:15:28] Epoch 44 [=====>   ] loss: 0.531
+[18:15:32] Epoch 44 [======>  ] loss: 0.542
+[18:15:36] Epoch 44 [=======> ] loss: 0.547
+[18:15:40] Epoch 44 [========>] loss: 0.511
+[train images]	 avg loss: 0.241v, accuracy:  92.63%^
+[test images]	 avg loss: 0.642v, accuracy:  78.55%^
+[18:15:59] Epoch 45 [         ] loss: 0.472
+[18:16:03] Epoch 45 [>        ] loss: 0.487
+[18:16:07] Epoch 45 [=>       ] loss: 0.497
+[18:16:11] Epoch 45 [==>      ] loss: 0.506
+[18:16:15] Epoch 45 [===>     ] loss: 0.520
+[18:16:19] Epoch 45 [====>    ] loss: 0.494
+[18:16:23] Epoch 45 [=====>   ] loss: 0.495
+[18:16:27] Epoch 45 [======>  ] loss: 0.541
+[18:16:31] Epoch 45 [=======> ] loss: 0.516
+[18:16:35] Epoch 45 [========>] loss: 0.537
+[train images]	 avg loss: 0.239v, accuracy:  92.85%^
+[test images]	 avg loss: 0.645^, accuracy:  78.71%^
+[18:16:54] Epoch 46 [         ] loss: 0.513
+[18:16:58] Epoch 46 [>        ] loss: 0.491
+[18:17:02] Epoch 46 [=>       ] loss: 0.490
+[18:17:06] Epoch 46 [==>      ] loss: 0.503
+[18:17:10] Epoch 46 [===>     ] loss: 0.540
+[18:17:14] Epoch 46 [====>    ] loss: 0.507
+[18:17:18] Epoch 46 [=====>   ] loss: 0.500
+[18:17:22] Epoch 46 [======>  ] loss: 0.504
+[18:17:26] Epoch 46 [=======> ] loss: 0.522
+[18:17:29] Epoch 46 [========>] loss: 0.498
+[train images]	 avg loss: 0.237v, accuracy:  92.54%v
+[test images]	 avg loss: 0.654^, accuracy:  78.79%^
+[18:17:49] Epoch 47 [         ] loss: 0.496
+[18:17:53] Epoch 47 [>        ] loss: 0.488
+[18:17:57] Epoch 47 [=>       ] loss: 0.505
+[18:18:01] Epoch 47 [==>      ] loss: 0.509
+[18:18:05] Epoch 47 [===>     ] loss: 0.494
+[18:18:09] Epoch 47 [====>    ] loss: 0.470
+[18:18:13] Epoch 47 [=====>   ] loss: 0.511
+[18:18:16] Epoch 47 [======>  ] loss: 0.505
+[18:18:20] Epoch 47 [=======> ] loss: 0.530
+[18:18:24] Epoch 47 [========>] loss: 0.530
+[train images]	 avg loss: 0.241^, accuracy:  92.74%^
+[test images]	 avg loss: 0.649v, accuracy:  78.51%v
+[18:18:44] Epoch 48 [         ] loss: 0.499
+[18:18:48] Epoch 48 [>        ] loss: 0.485
+[18:18:52] Epoch 48 [=>       ] loss: 0.479
+[18:18:55] Epoch 48 [==>      ] loss: 0.497
+[18:18:59] Epoch 48 [===>     ] loss: 0.498
+[18:19:03] Epoch 48 [====>    ] loss: 0.505
+[18:19:07] Epoch 48 [=====>   ] loss: 0.498
+[18:19:11] Epoch 48 [======>  ] loss: 0.497
+[18:19:15] Epoch 48 [=======> ] loss: 0.514
+[18:19:19] Epoch 48 [========>] loss: 0.517
+[train images]	 avg loss: 0.234v, accuracy:  92.97%^
+[test images]	 avg loss: 0.648v, accuracy:  78.66%^
+[18:19:38] Epoch 49 [         ] loss: 0.483
+[18:19:42] Epoch 49 [>        ] loss: 0.495
+[18:19:46] Epoch 49 [=>       ] loss: 0.477
+[18:19:50] Epoch 49 [==>      ] loss: 0.515
+[18:19:54] Epoch 49 [===>     ] loss: 0.507
+[18:19:58] Epoch 49 [====>    ] loss: 0.525
+[18:20:02] Epoch 49 [=====>   ] loss: 0.518
+[18:20:06] Epoch 49 [======>  ] loss: 0.481
+[18:20:09] Epoch 49 [=======> ] loss: 0.492
+[18:20:13] Epoch 49 [========>] loss: 0.512
+[train images]	 avg loss: 0.223v, accuracy:  93.41%^
+[test images]	 avg loss: 0.651^, accuracy:  78.79%^
+[18:20:33] Epoch 50 [         ] loss: 0.477
+[18:20:37] Epoch 50 [>        ] loss: 0.477
+[18:20:41] Epoch 50 [=>       ] loss: 0.464
+[18:20:45] Epoch 50 [==>      ] loss: 0.506
+[18:20:49] Epoch 50 [===>     ] loss: 0.478
+[18:20:53] Epoch 50 [====>    ] loss: 0.500
+[18:20:56] Epoch 50 [=====>   ] loss: 0.494
+[18:21:00] Epoch 50 [======>  ] loss: 0.527
+[18:21:04] Epoch 50 [=======> ] loss: 0.504
+[18:21:08] Epoch 50 [========>] loss: 0.517
+[train images]	 avg loss: 0.221v, accuracy:  93.34%v
+[test images]	 avg loss: 0.653^, accuracy:  78.67%v
+[18:21:28] Epoch 51 [         ] loss: 0.461
+[18:21:31] Epoch 51 [>        ] loss: 0.469
+[18:21:35] Epoch 51 [=>       ] loss: 0.474
+[18:21:39] Epoch 51 [==>      ] loss: 0.491
+[18:21:43] Epoch 51 [===>     ] loss: 0.475
+[18:21:47] Epoch 51 [====>    ] loss: 0.512
+[18:21:51] Epoch 51 [=====>   ] loss: 0.492
+[18:21:55] Epoch 51 [======>  ] loss: 0.492
+[18:21:59] Epoch 51 [=======> ] loss: 0.504
+[18:22:03] Epoch 51 [========>] loss: 0.511
+[train images]	 avg loss: 0.217v, accuracy:  93.42%^
+[test images]	 avg loss: 0.650v, accuracy:  78.87%^
+[18:22:23] Epoch 52 [         ] loss: 0.484
+[18:22:27] Epoch 52 [>        ] loss: 0.452
+[18:22:31] Epoch 52 [=>       ] loss: 0.495
+[18:22:35] Epoch 52 [==>      ] loss: 0.494
+[18:22:39] Epoch 52 [===>     ] loss: 0.496
+[18:22:43] Epoch 52 [====>    ] loss: 0.471
+[18:22:46] Epoch 52 [=====>   ] loss: 0.498
+[18:22:50] Epoch 52 [======>  ] loss: 0.512
+[18:22:54] Epoch 52 [=======> ] loss: 0.510
+[18:22:58] Epoch 52 [========>] loss: 0.518
+[train images]	 avg loss: 0.208v, accuracy:  94.03%^
+[test images]	 avg loss: 0.642v, accuracy:  78.94%^
+[18:23:17] Epoch 53 [         ] loss: 0.487
+[18:23:21] Epoch 53 [>        ] loss: 0.465
+[18:23:25] Epoch 53 [=>       ] loss: 0.502
+[18:23:29] Epoch 53 [==>      ] loss: 0.478
+[18:23:33] Epoch 53 [===>     ] loss: 0.489
+[18:23:37] Epoch 53 [====>    ] loss: 0.476
+[18:23:41] Epoch 53 [=====>   ] loss: 0.514
+[18:23:45] Epoch 53 [======>  ] loss: 0.501
+[18:23:49] Epoch 53 [=======> ] loss: 0.489
+[18:23:53] Epoch 53 [========>] loss: 0.493
+[train images]	 avg loss: 0.212^, accuracy:  93.88%v
+[test images]	 avg loss: 0.651^, accuracy:  78.57%v
+[18:24:13] Epoch 54 [         ] loss: 0.482
+[18:24:17] Epoch 54 [>        ] loss: 0.475
+[18:24:20] Epoch 54 [=>       ] loss: 0.494
+[18:24:24] Epoch 54 [==>      ] loss: 0.504
+[18:24:28] Epoch 54 [===>     ] loss: 0.489
+[18:24:32] Epoch 54 [====>    ] loss: 0.498
+[18:24:36] Epoch 54 [=====>   ] loss: 0.461
+[18:24:40] Epoch 54 [======>  ] loss: 0.500
+[18:24:44] Epoch 54 [=======> ] loss: 0.487
+[18:24:48] Epoch 54 [========>] loss: 0.499
+[train images]	 avg loss: 0.212^, accuracy:  93.79%v
+[test images]	 avg loss: 0.644v, accuracy:  78.87%^
+[18:25:07] Epoch 55 [         ] loss: 0.461
+[18:25:11] Epoch 55 [>        ] loss: 0.458
+[18:25:15] Epoch 55 [=>       ] loss: 0.466
+[18:25:19] Epoch 55 [==>      ] loss: 0.464
+[18:25:23] Epoch 55 [===>     ] loss: 0.495
+[18:25:27] Epoch 55 [====>    ] loss: 0.503
+[18:25:31] Epoch 55 [=====>   ] loss: 0.469
+[18:25:35] Epoch 55 [======>  ] loss: 0.493
+[18:25:38] Epoch 55 [=======> ] loss: 0.494
+[18:25:41] Epoch 55 [========>] loss: 0.502
+[train images]	 avg loss: 0.206v, accuracy:  94.12%^
+[test images]	 avg loss: 0.648^, accuracy:  78.99%^
+[18:26:01] Epoch 56 [         ] loss: 0.436
+[18:26:04] Epoch 56 [>        ] loss: 0.466
+[18:26:08] Epoch 56 [=>       ] loss: 0.469
+[18:26:11] Epoch 56 [==>      ] loss: 0.460
+[18:26:15] Epoch 56 [===>     ] loss: 0.488
+[18:26:18] Epoch 56 [====>    ] loss: 0.475
+[18:26:22] Epoch 56 [=====>   ] loss: 0.478
+[18:26:25] Epoch 56 [======>  ] loss: 0.475
+[18:26:28] Epoch 56 [=======> ] loss: 0.498
+[18:26:32] Epoch 56 [========>] loss: 0.494
+[train images]	 avg loss: 0.194v, accuracy:  94.43%^
+[test images]	 avg loss: 0.646v, accuracy:  78.87%v
+[18:26:51] Epoch 57 [         ] loss: 0.455
+[18:26:55] Epoch 57 [>        ] loss: 0.489
+[18:26:58] Epoch 57 [=>       ] loss: 0.477
+[18:27:01] Epoch 57 [==>      ] loss: 0.485
+[18:27:05] Epoch 57 [===>     ] loss: 0.471
+[18:27:08] Epoch 57 [====>    ] loss: 0.479
+[18:27:12] Epoch 57 [=====>   ] loss: 0.474
+[18:27:15] Epoch 57 [======>  ] loss: 0.459
+[18:27:19] Epoch 57 [=======> ] loss: 0.525
+[18:27:22] Epoch 57 [========>] loss: 0.484
+[train images]	 avg loss: 0.203^, accuracy:  94.08%v
+[test images]	 avg loss: 0.648^, accuracy:  78.69%v
+[18:27:41] Epoch 58 [         ] loss: 0.457
+[18:27:45] Epoch 58 [>        ] loss: 0.497
+[18:27:48] Epoch 58 [=>       ] loss: 0.463
+[18:27:52] Epoch 58 [==>      ] loss: 0.471
+[18:27:55] Epoch 58 [===>     ] loss: 0.459
+[18:27:58] Epoch 58 [====>    ] loss: 0.469
+[18:28:02] Epoch 58 [=====>   ] loss: 0.476
+[18:28:05] Epoch 58 [======>  ] loss: 0.492
+[18:28:09] Epoch 58 [=======> ] loss: 0.490
+[18:28:12] Epoch 58 [========>] loss: 0.485
+[train images]	 avg loss: 0.197v, accuracy:  94.24%^
+[test images]	 avg loss: 0.649^, accuracy:  78.98%^
+[18:28:31] Epoch 59 [         ] loss: 0.477
+[18:28:35] Epoch 59 [>        ] loss: 0.471
+[18:28:38] Epoch 59 [=>       ] loss: 0.463
+[18:28:42] Epoch 59 [==>      ] loss: 0.475
+[18:28:46] Epoch 59 [===>     ] loss: 0.475
+[18:28:49] Epoch 59 [====>    ] loss: 0.477
+[18:28:53] Epoch 59 [=====>   ] loss: 0.479
+[18:28:57] Epoch 59 [======>  ] loss: 0.480
+[18:29:01] Epoch 59 [=======> ] loss: 0.493
+[18:29:05] Epoch 59 [========>] loss: 0.470
+[train images]	 avg loss: 0.192v, accuracy:  94.68%^
+[test images]	 avg loss: 0.639v, accuracy:  79.04%^
+[18:29:24] Epoch 60 [         ] loss: 0.445
+[18:29:28] Epoch 60 [>        ] loss: 0.467
+[18:29:31] Epoch 60 [=>       ] loss: 0.450
+[18:29:35] Epoch 60 [==>      ] loss: 0.479
+[18:29:38] Epoch 60 [===>     ] loss: 0.470
+[18:29:42] Epoch 60 [====>    ] loss: 0.462
+[18:29:46] Epoch 60 [=====>   ] loss: 0.476
+[18:29:49] Epoch 60 [======>  ] loss: 0.496
+[18:29:53] Epoch 60 [=======> ] loss: 0.484
+[18:29:56] Epoch 60 [========>] loss: 0.466
+[train images]	 avg loss: 0.185v, accuracy:  94.60%v
+[test images]	 avg loss: 0.650^, accuracy:  79.09%^
+[18:30:15] Epoch 61 [         ] loss: 0.456
+[18:30:19] Epoch 61 [>        ] loss: 0.440
+[18:30:23] Epoch 61 [=>       ] loss: 0.455
+[18:30:26] Epoch 61 [==>      ] loss: 0.458
+[18:30:30] Epoch 61 [===>     ] loss: 0.470
+[18:30:33] Epoch 61 [====>    ] loss: 0.458
+[18:30:38] Epoch 61 [=====>   ] loss: 0.473
+[18:30:41] Epoch 61 [======>  ] loss: 0.509
+[18:30:45] Epoch 61 [=======> ] loss: 0.479
+[18:30:48] Epoch 61 [========>] loss: 0.480
+[train images]	 avg loss: 0.195^, accuracy:  94.44%v
+[test images]	 avg loss: 0.647v, accuracy:  79.46%^
+[18:31:07] Epoch 62 [         ] loss: 0.467
+[18:31:11] Epoch 62 [>        ] loss: 0.462
+[18:31:14] Epoch 62 [=>       ] loss: 0.453
+[18:31:18] Epoch 62 [==>      ] loss: 0.470
+[18:31:21] Epoch 62 [===>     ] loss: 0.454
+[18:31:25] Epoch 62 [====>    ] loss: 0.459
+[18:31:28] Epoch 62 [=====>   ] loss: 0.453
+[18:31:32] Epoch 62 [======>  ] loss: 0.448
+[18:31:35] Epoch 62 [=======> ] loss: 0.498
+[18:31:39] Epoch 62 [========>] loss: 0.491
+[train images]	 avg loss: 0.196^, accuracy:  94.59%^
+[test images]	 avg loss: 0.646v, accuracy:  79.06%v
+[18:31:58] Epoch 63 [         ] loss: 0.454
+[18:32:02] Epoch 63 [>        ] loss: 0.439
+[18:32:05] Epoch 63 [=>       ] loss: 0.468
+[18:32:09] Epoch 63 [==>      ] loss: 0.463
+[18:32:13] Epoch 63 [===>     ] loss: 0.456
+[18:32:16] Epoch 63 [====>    ] loss: 0.466
+[18:32:20] Epoch 63 [=====>   ] loss: 0.466
+[18:32:23] Epoch 63 [======>  ] loss: 0.476
+[18:32:27] Epoch 63 [=======> ] loss: 0.481
+[18:32:30] Epoch 63 [========>] loss: 0.458
+[train images]	 avg loss: 0.190v, accuracy:  94.68%^
+[test images]	 avg loss: 0.649^, accuracy:  79.07%^
+[18:32:49] Epoch 64 [         ] loss: 0.462
+[18:32:52] Epoch 64 [>        ] loss: 0.445
+[18:32:56] Epoch 64 [=>       ] loss: 0.457
+[18:32:59] Epoch 64 [==>      ] loss: 0.449
+[18:33:03] Epoch 64 [===>     ] loss: 0.467
+[18:33:06] Epoch 64 [====>    ] loss: 0.465
+[18:33:10] Epoch 64 [=====>   ] loss: 0.450
+[18:33:13] Epoch 64 [======>  ] loss: 0.449
+[18:33:17] Epoch 64 [=======> ] loss: 0.480
+[18:33:20] Epoch 64 [========>] loss: 0.476
+[train images]	 avg loss: 0.185v, accuracy:  94.82%^
+[test images]	 avg loss: 0.647v, accuracy:  79.08%^
+[18:33:40] Epoch 65 [         ] loss: 0.430
+[18:33:43] Epoch 65 [>        ] loss: 0.441
+[18:33:47] Epoch 65 [=>       ] loss: 0.452
+[18:33:50] Epoch 65 [==>      ] loss: 0.460
+[18:33:54] Epoch 65 [===>     ] loss: 0.454
+[18:33:57] Epoch 65 [====>    ] loss: 0.459
+[18:34:01] Epoch 65 [=====>   ] loss: 0.456
+[18:34:04] Epoch 65 [======>  ] loss: 0.482
+[18:34:08] Epoch 65 [=======> ] loss: 0.472
+[18:34:12] Epoch 65 [========>] loss: 0.477
+[train images]	 avg loss: 0.172v, accuracy:  95.39%^
+[test images]	 avg loss: 0.636v, accuracy:  79.06%v
+[18:34:31] Epoch 66 [         ] loss: 0.449
+[18:34:34] Epoch 66 [>        ] loss: 0.434
+[18:34:37] Epoch 66 [=>       ] loss: 0.451
+[18:34:41] Epoch 66 [==>      ] loss: 0.460
+[18:34:45] Epoch 66 [===>     ] loss: 0.445
+[18:34:48] Epoch 66 [====>    ] loss: 0.461
+[18:34:52] Epoch 66 [=====>   ] loss: 0.474
+[18:34:55] Epoch 66 [======>  ] loss: 0.488
+[18:34:59] Epoch 66 [=======> ] loss: 0.462
+[18:35:02] Epoch 66 [========>] loss: 0.460
+[train images]	 avg loss: 0.172v, accuracy:  95.32%v
+[test images]	 avg loss: 0.644^, accuracy:  78.91%v
+[18:35:21] Epoch 67 [         ] loss: 0.424
+[18:35:24] Epoch 67 [>        ] loss: 0.459
+[18:35:28] Epoch 67 [=>       ] loss: 0.465
+[18:35:31] Epoch 67 [==>      ] loss: 0.434
+[18:35:35] Epoch 67 [===>     ] loss: 0.462
+[18:35:38] Epoch 67 [====>    ] loss: 0.478
+[18:35:42] Epoch 67 [=====>   ] loss: 0.457
+[18:35:45] Epoch 67 [======>  ] loss: 0.465
+[18:35:49] Epoch 67 [=======> ] loss: 0.473
+[18:35:52] Epoch 67 [========>] loss: 0.465
+[train images]	 avg loss: 0.183^, accuracy:  94.93%v
+[test images]	 avg loss: 0.655^, accuracy:  79.22%^
+[18:36:11] Epoch 68 [         ] loss: 0.444
+[18:36:15] Epoch 68 [>        ] loss: 0.427
+[18:36:18] Epoch 68 [=>       ] loss: 0.458
+[18:36:22] Epoch 68 [==>      ] loss: 0.451
+[18:36:25] Epoch 68 [===>     ] loss: 0.446
+[18:36:29] Epoch 68 [====>    ] loss: 0.451
+[18:36:32] Epoch 68 [=====>   ] loss: 0.453
+[18:36:36] Epoch 68 [======>  ] loss: 0.496
+[18:36:39] Epoch 68 [=======> ] loss: 0.460
+[18:36:43] Epoch 68 [========>] loss: 0.492
+[train images]	 avg loss: 0.186^, accuracy:  94.95%^
+[test images]	 avg loss: 0.654v, accuracy:  78.54%v
+[18:37:01] Epoch 69 [         ] loss: 0.418
+[18:37:05] Epoch 69 [>        ] loss: 0.463
+[18:37:08] Epoch 69 [=>       ] loss: 0.429
+[18:37:12] Epoch 69 [==>      ] loss: 0.459
+[18:37:16] Epoch 69 [===>     ] loss: 0.456
+[18:37:19] Epoch 69 [====>    ] loss: 0.454
+[18:37:23] Epoch 69 [=====>   ] loss: 0.466
+[18:37:26] Epoch 69 [======>  ] loss: 0.448
+[18:37:30] Epoch 69 [=======> ] loss: 0.459
+[18:37:33] Epoch 69 [========>] loss: 0.465
+[train images]	 avg loss: 0.179v, accuracy:  95.32%^
+[test images]	 avg loss: 0.650v, accuracy:  79.29%^
+[18:37:52] Epoch 70 [         ] loss: 0.398
+[18:37:55] Epoch 70 [>        ] loss: 0.444
+[18:37:59] Epoch 70 [=>       ] loss: 0.453
+[18:38:02] Epoch 70 [==>      ] loss: 0.444
+[18:38:06] Epoch 70 [===>     ] loss: 0.461
+[18:38:09] Epoch 70 [====>    ] loss: 0.449
+[18:38:13] Epoch 70 [=====>   ] loss: 0.461
+[18:38:16] Epoch 70 [======>  ] loss: 0.464
+[18:38:20] Epoch 70 [=======> ] loss: 0.458
+[18:38:23] Epoch 70 [========>] loss: 0.458
+[train images]	 avg loss: 0.159v, accuracy:  95.80%^
+[test images]	 avg loss: 0.639v, accuracy:  79.47%^
+[18:38:42] Epoch 71 [         ] loss: 0.446
+[18:38:46] Epoch 71 [>        ] loss: 0.447
+[18:38:49] Epoch 71 [=>       ] loss: 0.445
+[18:38:53] Epoch 71 [==>      ] loss: 0.448
+[18:38:56] Epoch 71 [===>     ] loss: 0.408
+[18:39:00] Epoch 71 [====>    ] loss: 0.455
+[18:39:03] Epoch 71 [=====>   ] loss: 0.474
+[18:39:07] Epoch 71 [======>  ] loss: 0.446
+[18:39:10] Epoch 71 [=======> ] loss: 0.464
+[18:39:14] Epoch 71 [========>] loss: 0.476
+[train images]	 avg loss: 0.167^, accuracy:  95.57%v
+[test images]	 avg loss: 0.644^, accuracy:  79.61%^
+[18:39:33] Epoch 72 [         ] loss: 0.429
+[18:39:36] Epoch 72 [>        ] loss: 0.415
+[18:39:39] Epoch 72 [=>       ] loss: 0.436
+[18:39:43] Epoch 72 [==>      ] loss: 0.474
+[18:39:46] Epoch 72 [===>     ] loss: 0.446
+[18:39:50] Epoch 72 [====>    ] loss: 0.470
+[18:39:53] Epoch 72 [=====>   ] loss: 0.455
+[18:39:57] Epoch 72 [======>  ] loss: 0.462
+[18:40:00] Epoch 72 [=======> ] loss: 0.431
+[18:40:04] Epoch 72 [========>] loss: 0.452
+[train images]	 avg loss: 0.165v, accuracy:  95.61%^
+[test images]	 avg loss: 0.649^, accuracy:  79.26%v
+[18:40:23] Epoch 73 [         ] loss: 0.450
+[18:40:26] Epoch 73 [>        ] loss: 0.443
+[18:40:29] Epoch 73 [=>       ] loss: 0.432
+[18:40:33] Epoch 73 [==>      ] loss: 0.413
+[18:40:36] Epoch 73 [===>     ] loss: 0.427
+[18:40:40] Epoch 73 [====>    ] loss: 0.450
+[18:40:43] Epoch 73 [=====>   ] loss: 0.462
+[18:40:47] Epoch 73 [======>  ] loss: 0.465
+[18:40:50] Epoch 73 [=======> ] loss: 0.463
+[18:40:54] Epoch 73 [========>] loss: 0.461
+[train images]	 avg loss: 0.181^, accuracy:  94.81%v
+[test images]	 avg loss: 0.668^, accuracy:  78.97%v
+[18:41:13] Epoch 74 [         ] loss: 0.443
+[18:41:17] Epoch 74 [>        ] loss: 0.445
+[18:41:20] Epoch 74 [=>       ] loss: 0.439
+[18:41:24] Epoch 74 [==>      ] loss: 0.449
+[18:41:27] Epoch 74 [===>     ] loss: 0.443
+[18:41:31] Epoch 74 [====>    ] loss: 0.462
+[18:41:34] Epoch 74 [=====>   ] loss: 0.437
+[18:41:38] Epoch 74 [======>  ] loss: 0.459
+[18:41:41] Epoch 74 [=======> ] loss: 0.454
+[18:41:45] Epoch 74 [========>] loss: 0.444
+[train images]	 avg loss: 0.166v, accuracy:  95.39%^
+[test images]	 avg loss: 0.662v, accuracy:  78.80%v
+[18:42:03] Epoch 75 [         ] loss: 0.427
+[18:42:07] Epoch 75 [>        ] loss: 0.422
+[18:42:10] Epoch 75 [=>       ] loss: 0.420
+[18:42:14] Epoch 75 [==>      ] loss: 0.445
+[18:42:17] Epoch 75 [===>     ] loss: 0.437
+[18:42:20] Epoch 75 [====>    ] loss: 0.433
+[18:42:24] Epoch 75 [=====>   ] loss: 0.446
+[18:42:27] Epoch 75 [======>  ] loss: 0.430
+[18:42:31] Epoch 75 [=======> ] loss: 0.455
+[18:42:34] Epoch 75 [========>] loss: 0.463
+[train images]	 avg loss: 0.164v, accuracy:  95.41%^
+[test images]	 avg loss: 0.655v, accuracy:  78.90%^
+[18:42:53] Epoch 76 [         ] loss: 0.422
+[18:42:57] Epoch 76 [>        ] loss: 0.434
+[18:43:00] Epoch 76 [=>       ] loss: 0.458
+[18:43:04] Epoch 76 [==>      ] loss: 0.443
+[18:43:07] Epoch 76 [===>     ] loss: 0.428
+[18:43:11] Epoch 76 [====>    ] loss: 0.437
+[18:43:14] Epoch 76 [=====>   ] loss: 0.447
+[18:43:18] Epoch 76 [======>  ] loss: 0.431
+[18:43:21] Epoch 76 [=======> ] loss: 0.455
+[18:43:25] Epoch 76 [========>] loss: 0.445
+[train images]	 avg loss: 0.154v, accuracy:  95.92%^
+[test images]	 avg loss: 0.642v, accuracy:  79.29%^
+[18:43:43] Epoch 77 [         ] loss: 0.428
+[18:43:47] Epoch 77 [>        ] loss: 0.458
+[18:43:50] Epoch 77 [=>       ] loss: 0.435
+[18:43:54] Epoch 77 [==>      ] loss: 0.421
+[18:43:57] Epoch 77 [===>     ] loss: 0.416
+[18:44:01] Epoch 77 [====>    ] loss: 0.427
+[18:44:04] Epoch 77 [=====>   ] loss: 0.432
+[18:44:08] Epoch 77 [======>  ] loss: 0.428
+[18:44:11] Epoch 77 [=======> ] loss: 0.455
+[18:44:15] Epoch 77 [========>] loss: 0.435
+[train images]	 avg loss: 0.157^, accuracy:  96.00%^
+[test images]	 avg loss: 0.651^, accuracy:  79.22%v
+[18:44:33] Epoch 78 [         ] loss: 0.415
+[18:44:37] Epoch 78 [>        ] loss: 0.439
+[18:44:40] Epoch 78 [=>       ] loss: 0.426
+[18:44:44] Epoch 78 [==>      ] loss: 0.417
+[18:44:47] Epoch 78 [===>     ] loss: 0.439
+[18:44:51] Epoch 78 [====>    ] loss: 0.448
+[18:44:54] Epoch 78 [=====>   ] loss: 0.462
+[18:44:57] Epoch 78 [======>  ] loss: 0.417
+[18:45:01] Epoch 78 [=======> ] loss: 0.440
+[18:45:04] Epoch 78 [========>] loss: 0.444
+[train images]	 avg loss: 0.154v, accuracy:  95.96%v
+[test images]	 avg loss: 0.642v, accuracy:  79.38%^
+[18:45:23] Epoch 79 [         ] loss: 0.410
+[18:45:26] Epoch 79 [>        ] loss: 0.439
+[18:45:30] Epoch 79 [=>       ] loss: 0.423
+[18:45:33] Epoch 79 [==>      ] loss: 0.428
+[18:45:37] Epoch 79 [===>     ] loss: 0.426
+[18:45:40] Epoch 79 [====>    ] loss: 0.433
+[18:45:44] Epoch 79 [=====>   ] loss: 0.434
+[18:45:47] Epoch 79 [======>  ] loss: 0.445
+[18:45:51] Epoch 79 [=======> ] loss: 0.450
+[18:45:54] Epoch 79 [========>] loss: 0.442
+[train images]	 avg loss: 0.160^, accuracy:  95.98%^
+[test images]	 avg loss: 0.655^, accuracy:  78.91%v
+[18:46:13] Epoch 80 [         ] loss: 0.413
+[18:46:16] Epoch 80 [>        ] loss: 0.427
+[18:46:19] Epoch 80 [=>       ] loss: 0.436
+[18:46:23] Epoch 80 [==>      ] loss: 0.449
+[18:46:26] Epoch 80 [===>     ] loss: 0.436
+[18:46:30] Epoch 80 [====>    ] loss: 0.448
+[18:46:33] Epoch 80 [=====>   ] loss: 0.412
+[18:46:37] Epoch 80 [======>  ] loss: 0.434
+[18:46:40] Epoch 80 [=======> ] loss: 0.415
+[18:46:44] Epoch 80 [========>] loss: 0.442
+[train images]	 avg loss: 0.154v, accuracy:  96.15%^
+[test images]	 avg loss: 0.639v, accuracy:  79.20%^
+[18:47:02] Epoch 81 [         ] loss: 0.402
+[18:47:06] Epoch 81 [>        ] loss: 0.424
+[18:47:09] Epoch 81 [=>       ] loss: 0.377
+[18:47:13] Epoch 81 [==>      ] loss: 0.411
+[18:47:16] Epoch 81 [===>     ] loss: 0.460
+[18:47:20] Epoch 81 [====>    ] loss: 0.436
+[18:47:23] Epoch 81 [=====>   ] loss: 0.442
+[18:47:26] Epoch 81 [======>  ] loss: 0.435
+[18:47:30] Epoch 81 [=======> ] loss: 0.442
+[18:47:33] Epoch 81 [========>] loss: 0.439
+[train images]	 avg loss: 0.147v, accuracy:  96.32%^
+[test images]	 avg loss: 0.641^, accuracy:  79.47%^
+[18:47:52] Epoch 82 [         ] loss: 0.416
+[18:47:56] Epoch 82 [>        ] loss: 0.440
+[18:47:59] Epoch 82 [=>       ] loss: 0.430
+[18:48:02] Epoch 82 [==>      ] loss: 0.433
+[18:48:06] Epoch 82 [===>     ] loss: 0.442
+[18:48:09] Epoch 82 [====>    ] loss: 0.447
+[18:48:13] Epoch 82 [=====>   ] loss: 0.390
+[18:48:16] Epoch 82 [======>  ] loss: 0.425
+[18:48:20] Epoch 82 [=======> ] loss: 0.441
+[18:48:23] Epoch 82 [========>] loss: 0.443
+[train images]	 avg loss: 0.154^, accuracy:  95.96%v
+[test images]	 avg loss: 0.650^, accuracy:  79.29%v
+Finished Training
+Results generated with seed 874450

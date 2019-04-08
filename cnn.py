@@ -127,7 +127,7 @@ class CNN(nn.Module):
             out_channels=16,
             kernel_size=5,
             activation=nn.ReLU(),
-            dropout=0.25,
+            dropout=0.2,
         )
         self.add_conv_layer(
             out_channels=16,
@@ -137,13 +137,13 @@ class CNN(nn.Module):
             dropout=0.25,
         )
         self.add_conv_layer(
-            out_channels=16,
+            out_channels=32,
             kernel_size=5,
             activation=nn.ReLU(),
             dropout=0.5,
         )
         self.add_conv_layer(
-            out_channels=16,
+            out_channels=32,
             kernel_size=3,
             stride=2,
             activation=nn.ReLU(),
